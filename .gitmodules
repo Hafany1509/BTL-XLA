@@ -1,0 +1,3 @@
+[submodule "upstream/npr"]
+	path = upstream/npr
+	url = https://github.com/chuangchuangtan/NPR-DeepfakeDetection.git
