@@ -35,9 +35,23 @@ Khi báo cáo, mô tả đây là cải thiện Accuracy ở ngưỡng đang dù
 
 Khi tích hợp demo, dùng cùng hàm `load_model` của Thành viên 1 để nạp từng checkpoint. Hiển thị tên phiên bản cạnh nhãn và điểm dự đoán để người dùng biết mô hình nào đang chạy. Hai checkpoint nằm trong thư mục đầu ra cục bộ và có thể bàn giao riêng theo SHA-256 ở trên.
 
+Thành viên 3 có thể dùng lệnh dưới đây để đối chiếu một ảnh với cả ba checkpoint. Chạy từ thư mục gốc của repo nhóm bằng môi trường suy luận đã cài theo hướng dẫn Thành viên 1. Nếu nhận checkpoint và ảnh demo qua thư mục chia sẻ, sửa `$models` và `$image` theo vị trí tệp trên máy.
+
+```powershell
+$handover = '..\XLA\NPR-DeepfakeDetection'
+$models = 'outputs/finetune-pilot'
+$image = 'outputs/jpeg-heldout/q50/000305.jpg'
+
+python -B "$handover/inference.py" $image --checkpoint "$handover/NPR.pth"
+python -B "$handover/inference.py" $image --checkpoint "$models/npr_control.pth"
+python -B "$handover/inference.py" $image --checkpoint "$models/npr_jpeg.pth"
+```
+
 Hai ví dụ dưới đây nằm trong `outputs/jpeg-heldout/q50/`. Dùng cùng ảnh với cả ba checkpoint khi demo.
 
 | Tệp | Nhãn thật | NPR gốc | Đối chứng | Bản JPEG |
 |---|---|---|---|---|
 | `000305.jpg` | Giả, `sdv1` | Thật | Thật | Giả, điểm 0,9367 |
 | `000032.jpg` | Thật, ProGAN | Thật | Thật | Giả, điểm 0,5204 |
+
+Thư mục bàn giao cục bộ `outputs/member2-handover/` gom hai checkpoint, log, cấu hình, bảng kết quả và hai ảnh trên. Khi dùng bản sao này, đặt `$models = 'outputs/member2-handover'` và `$image = 'outputs/member2-handover/demo/000305.jpg'` trong lệnh demo.
