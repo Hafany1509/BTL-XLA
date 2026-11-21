@@ -8,3 +8,7 @@ Thành viên 1 phụ trách nạp checkpoint, tiền xử lý, suy luận và đ
 - Thống nhất hàm `predict(image, model)` với frontend. Kết quả dự kiến gồm `label`, `fake_score` và `model_version`.
 
 Tái lập được nghiệm thu khi thành viên khác chạy lại theo hướng dẫn trên cùng bộ ảnh đã chốt. Nếu giảng viên yêu cầu huấn luyện lại hoặc tái lập bảng cụ thể, bổ sung kết quả tương ứng trước khi chuyển giai đoạn.
+
+## Kết quả train và test trên AutoDL
+
+Phần [autodl_reproduction/](autodl_reproduction/README.md) chứa code train/test, yêu cầu môi trường, kiểm tra đường dẫn và CSV của benchmark ForenSynths 8 generator. Chưa có đánh giá các Table 2–5 trong phần này.

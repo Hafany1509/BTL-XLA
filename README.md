@@ -30,3 +30,7 @@ python baseline/smoke_npr.py
 | [`docs/`](docs/) | Thành viên 3 tổng hợp | Phân công, hướng dẫn chạy, báo cáo và slide |
 
 Mỗi thành viên tạo nhánh từ `main` theo phần việc, chẳng hạn `baseline/reproduction`, `experiments/jpeg` hoặc `frontend/demo`. Đưa thay đổi vào `main` qua pull request. Đặt dữ liệu, checkpoint huấn luyện và đầu ra cục bộ trong `datasets/`, `checkpoints/` và `outputs/`.
+
+## Tái lập trên AutoDL
+
+Xem [code, cấu hình và kết quả ForenSynths](baseline/autodl_reproduction/README.md) cho lượt train NPR 4 category, 50 epoch và đánh giá Table 1. Kết quả model nhóm tự train được tách riêng với checkpoint tác giả.

@@ -1,0 +1,17 @@
+{
+  "trained_model": {
+    "filename": "model_epoch_last.pth",
+    "sha256": "84b1c6d44c93ecd13d374e7de681df446b1521fbc038429aedbe668fec717ec9",
+    "bytes": 5840724,
+    "run_name": "NPR-4class-2026_11_21_05_53_01",
+    "epoch": 50,
+    "included_in_git": false
+  },
+  "author_NPR": {
+    "filename": "NPR.pth",
+    "sha256": "3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53",
+    "bytes": 17393733,
+    "included_in_git": false,
+    "evaluation_note": "Evaluated after removing module. key prefixes; tensor values unchanged."
+  }
+}

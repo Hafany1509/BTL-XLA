@@ -1,0 +1,10 @@
+# Versions observed on the AutoDL reproduction environment (Python 3.10).
+# Install CUDA wheels first as documented in README.md.
+torch==2.1.2
+torchvision==0.16.2
+numpy==1.26.4
+scipy==1.15.3
+scikit-learn==1.7.2
+opencv-python-headless==4.10.0.84
+Pillow==10.3.0
+tensorboardX==2.6.5
