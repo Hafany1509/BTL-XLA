@@ -5,7 +5,7 @@ import util
 import torch
 #import models
 #import data
-
+ 
 
 class BaseOptions():
     def __init__(self):
@@ -42,7 +42,7 @@ class BaseOptions():
         parser.add_argument('--suffix', default='', type=str, help='customized suffix: opt.name = opt.name + suffix: e.g., {model}_{netG}_size{loadSize}')
         parser.add_argument('--delr_freq', type=int, default=20, help='frequency of changing lr')
 
-
+        
         self.initialized = True
         return parser
 
@@ -72,7 +72,7 @@ class BaseOptions():
         print(message)
 
         # save to the disk
-
+        
         expr_dir = os.path.join(opt.checkpoints_dir, opt.name)
         util.mkdirs(expr_dir)
         file_name = os.path.join(expr_dir, 'opt.txt')

@@ -33,4 +33,4 @@ Mỗi thành viên tạo nhánh từ `main` theo phần việc, chẳng hạn `b
 
 ## Tái lập trên AutoDL
 
-Xem [code, cấu hình và kết quả ForenSynths](baseline/autodl_reproduction/README.md) cho lượt train NPR 4 category, 50 epoch và đánh giá Table 1. Kết quả model nhóm tự train được tách riêng với checkpoint tác giả.
+Xem [bản bàn giao AutoDL](baseline/autodl_reproduction/README.md) gồm code thực tế, model nhóm tự train, cấu hình, log đủ 50 epoch và kết quả ForenSynths (Table 1). Phần bàn giao này chỉ dùng kết quả model nhóm tự train.

@@ -1,67 +1,91 @@
-# NPR: train lại và đánh giá ForenSynths trên AutoDL
+# Bàn giao NPR tự train trên AutoDL
 
-Mã được điều chỉnh từ [NPR-DeepfakeDetection của tác giả](https://github.com/chuangchuangtan/NPR-DeepfakeDetection)
-cho [paper NPR, arXiv:2312.10461v2](https://arxiv.org/abs/2312.10461v2).
-Các module mạng và biến đổi ảnh được giữ từ bản mã nguồn đã dùng trong lần chạy.
-Phần này độc lập với các thí nghiệm JPEG trong `experiments/`.
+Phần này chứa code thực tế tải từ AutoDL, model nhóm tự train, cấu hình,
+log train/test và CSV kết quả. Code được điều chỉnh từ
+[NPR-DeepfakeDetection](https://github.com/chuangchuangtan/NPR-DeepfakeDetection),
+phương pháp của [paper NPR](https://arxiv.org/abs/2312.10461v2).
+Các module NPR gốc cần để chạy model vẫn được giữ và ghi nguồn.
+Checkpoint tác giả và kết quả đo trên checkpoint tác giả không thuộc bản bàn giao này.
+Phần này độc lập với các thí nghiệm JPEG ở `experiments/`.
 
-## Phạm vi và kết quả
+## File bàn giao
 
-Đã train từ đầu bằng ProGAN/LSUN, 4 category `car,cat,chair,horse`,
-và đánh giá trên 8 generator của ForenSynths (Table 1).
-Chưa tái lập các bộ test GAN/Diffusion ở Table 2–5.
+| Thành phần | Vị trí |
+|---|---|
+| Code đã chạy | `train.py`, `test.py`, `validate.py`, `data/`, `networks/`, `options/`, `util.py` |
+| Chuẩn bị/kiểm tra data | `dataset_layout.py`, `prepare_autodl_data.sh` |
+| Model nhóm tự train | [`models/model_epoch_last.pth`](models/model_epoch_last.pth) |
+| Cấu hình lần train | [`config/train-options.txt`](config/train-options.txt) |
+| Log đủ 50 epoch | [`results/trained-model-training.log`](results/trained-model-training.log) |
+| Kết quả test | [`results/trained-model-forensynths.csv`](results/trained-model-forensynths.csv) |
+| Log test | [`results/trained-model-test.log`](results/trained-model-test.log) |
+| Hash model và code | `results/checkpoint-manifest.json`, `results/source-manifest.json` |
+| Phiên bản cài lại môi trường | `requirements-autodl.txt` |
 
-| Nguồn trọng số | Mean Accuracy (%) | Mean AP (%) | Bằng chứng |
-|---|---:|---:|---|
-| Model nhóm tự train, epoch 50 | 89.4112 | 95.3477 | [CSV](results/trained-model-forensynths.csv), [log](results/trained-model-test.log) |
-| Checkpoint tác giả `NPR.pth` | 92.3019 | 94.2229 | [CSV](results/author-npr-forensynths.csv) |
-| Paper v2, Table 1 | 92.5 | 96.1 | Số liệu công bố, không phải kết quả nhóm tự đo |
+Code, `requirements.txt` gốc, cấu hình, log và CSV được lấy từ snapshot tải từ
+instance AutoDL. Model được tải riêng từ checkpoint cuối của cùng run.
+`requirements-autodl.txt` bổ sung từ các phiên bản đã ghi nhận khi cài đặt;
+đây không phải bản xuất `pip freeze` đầy đủ. Dataset, cache, backup và log
+chạy thử không đưa vào phần bàn giao này.
 
-Mean là trung bình không trọng số của 8 generator, không phải Accuracy
-gộp toàn bộ ảnh. Tổng test có 62.003 ảnh. ProGAN test dùng toàn bộ category;
-không giới hạn 4 category như tập train. Nhãn thật là 0, giả là 1.
-Ngưỡng là **sigmoid > 0.5**; AP dùng điểm liên tục, không threshold.
-Resize 256×256 bằng bilinear, không crop/flip khi test; chuẩn hóa ImageNet.
+## Phạm vi và kết quả của nhóm
 
-Kết quả checkpoint tác giả phải báo cáo riêng với kết quả model tự train.
-Việc chạy thành công không xác nhận đã tái lập chính xác số liệu paper.
-Không điều chỉnh threshold bằng tập test. Chưa có kiểm tra SHA-256 giữa các
-tập ảnh để kết luận về trùng lặp dữ liệu; test đã qua kiểm tra thư mục/nhãn
-và suy luận toàn bộ ảnh, không có báo cáo integrity/dedup riêng.
+- Train từ đầu: ProGAN/LSUN, `car,cat,chair,horse`, 144.024 ảnh, 50 epoch.
+- Validation: 1.600 ảnh; epoch 49 có Acc 99.75%, AP 99.9992203%.
+- Test: ForenSynths, 8 generator, 62.003 ảnh.
+- **Mean Accuracy: 89.4112%; Mean AP: 95.3477%.**
+- Đã thực hiện Table 1; chưa có các bộ test của Table 2–5 trong phần này.
 
-## Môi trường đã dùng
+Mean là trung bình đều của 8 generator, không phải Accuracy gộp mọi ảnh.
+Nhãn: `0_real = 0`, `1_fake = 1`. Test dùng toàn bộ category của mỗi generator;
+4 category chỉ là cấu hình train/validation. Tiền xử lý test: resize bilinear
+256×256, không crop, không flip, chuẩn hóa ImageNet; model ở chế độ `eval()`.
+Accuracy dùng `sigmoid > 0.5`; AP tính từ điểm liên tục. Không chọn ngưỡng
+trên tập test. Chưa kiểm tra trùng ảnh giữa các split bằng hash và chưa kết
+luận đã khớp chính xác dữ liệu/protocol tạo bảng trong paper.
 
-- Python 3.10; PyTorch 2.1.2+cu118, torchvision 0.16.2+cu118.
-- NumPy 1.26.4; OpenCV headless 4.10.0.84. NumPy 2.2.6 trong môi trường ban đầu
-  gây lỗi `torch.from_numpy`; không dùng cấu hình đó cho lượt chạy thành công.
-- AutoDL báo GPU NVIDIA GeForce RTX 4080 SUPER.
-- Seed train/test: 100; Adam, lr 0.0002, batch 32, 50 epoch;
-  lr nhân 0.9 sau các epoch có chỉ số 10/20/30/40 (đếm từ 0).
-- Validation: 1.600 ảnh; train loader ghi nhận 144.024 ảnh.
-- Validation cuối ghi trong phiên chạy: Accuracy 99.75%, AP khoảng 99.9992%.
-  Full training log không có trong các file local được bàn giao lên Git.
+## Môi trường
 
-## Cài đặt
+Python 3.10, PyTorch 2.1.2+cu118, torchvision 0.16.2+cu118, NumPy 1.26.4,
+OpenCV headless 4.10.0.84; AutoDL báo GPU NVIDIA GeForce RTX 4080 SUPER.
+Seed 100, Adam, lr 0.0002, batch 32. Scheduler nhân lr với 0.9 sau các epoch
+có chỉ số 10/20/30/40 (đếm từ 0). Cấu hình thực tế nằm trong `config/train-options.txt`.
 
 Chạy từ thư mục repo nhóm:
 
 ```bash
 cd baseline/autodl_reproduction
 # Nếu AutoDL đã có đúng torch/torchvision CUDA thì giữ nguyên.
-# Nếu tạo môi trường mới, cài cặp CUDA 11.8 trước:
+# Nếu tạo môi trường mới:
 python -m pip install torch==2.1.2 torchvision==0.16.2 --index-url https://download.pytorch.org/whl/cu118
-python -m pip install -r requirements.txt
-apt-get update
-apt-get install -y p7zip-full unzip tmux
+python -m pip install -r requirements-autodl.txt
 ```
 
-Trọng số và dataset không được đưa vào Git. Dữ liệu từ
-[sywang/CNNDetection](https://huggingface.co/datasets/sywang/CNNDetection/tree/main);
-xem [hướng dẫn AutoDL](README_AUTODL.md) và `prepare_autodl_data.sh` cho archive
-train/validation. Script chuẩn bị giải nén cả archive, giữ bản ZIP trung gian;
-cần kiểm tra dung lượng trước khi chạy. Không chạy lại nếu ảnh đã được giải nén.
+NumPy 2.2.6 đã gây lỗi `torch.from_numpy` với môi trường này; lần chạy thành
+công dùng NumPy 1.26.4. `requirements.txt` gốc không pin phiên bản, nên dùng
+`requirements-autodl.txt` cho môi trường tái lập.
 
-## Kiểm tra và train
+## Data
+
+Data không nằm trong Git. Nguồn:
+[sywang/CNNDetection](https://huggingface.co/datasets/sywang/CNNDetection/tree/main).
+Đường dẫn ảnh đã dùng trên AutoDL:
+
+```text
+/root/autodl-tmp/CNNDetection/extracted/train/{car,cat,chair,horse}/{0_real,1_fake}/
+/root/autodl-tmp/CNNDetection/extracted/val/{car,cat,chair,horse}/{0_real,1_fake}/
+/root/autodl-tmp/CNNDetection/extracted/test/{generator}/...
+```
+
+Test có `progan,stylegan,stylegan2,biggan,cyclegan,stargan,gaugan,deepfake`.
+ProGAN/StyleGAN/StyleGAN2/CycleGAN có thêm tầng category trước nhãn;
+các generator còn lại chứa trực tiếp `0_real` và `1_fake`.
+
+`prepare_autodl_data.sh` là script chuẩn bị archive từ lượt chạy: tạo ZIP
+trung gian rồi giải nén toàn bộ train/validation, cần đủ dung lượng. Không
+chạy lại nếu ảnh đã có. Máy cần `p7zip-full` và `unzip` để dùng script này.
+
+## Kiểm tra và train lại
 
 ```bash
 python train.py --dataroot /root/autodl-tmp/CNNDetection \
@@ -75,47 +99,35 @@ CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 python train.py \
   --checkpoints_dir /root/autodl-tmp/checkpoints --skip_test
 ```
 
-Đường dẫn có thể chỉ định trực tiếp bằng `--train_root` và `--val_root`.
-`--skip_test` không bỏ validation; nó chỉ bỏ benchmark ngoài train/validation.
-Các checkpoint có định dạng trọng số thuần. Không dùng `--continue_train`
-để kỳ vọng tiếp tục chính xác optimizer/RNG: workflow resume gốc chưa được sửa.
+`--skip_test` chỉ bỏ benchmark trong lúc train; validation vẫn chạy mỗi epoch.
+Có thể chỉ định ảnh bằng `--train_root` và `--val_root`. Checkpoint lưu trọng số,
+không lưu đầy đủ optimizer/RNG; workflow `--continue_train` gốc chưa được sửa
+để tiếp tục chính xác trạng thái huấn luyện.
 
-## Test
+## Test model bàn giao
 
-Thư mục test phải trực tiếp chứa `progan,stylegan,stylegan2,biggan,cyclegan,stargan,gaugan,deepfake`.
-Chạy từ `baseline/autodl_reproduction/`, sửa `MODEL` theo nơi lưu trọng số:
+Không cần train lại để test model kèm theo. Chạy từ `baseline/autodl_reproduction/`:
 
 ```bash
-MODEL=/root/autodl-tmp/checkpoints/NPR-4class-2026_11_21_05_53_01/model_epoch_last.pth
 set -o pipefail
 CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 python test.py \
   --dataroot /root/autodl-tmp/CNNDetection/extracted/test \
-  --model_path "$MODEL" --batch_size 32 --num_threads 8 \
-  --results_csv /root/autodl-tmp/trained-model-forensynths.csv \
-  2>&1 | tee /root/autodl-tmp/trained-model-test.log
+  --model_path models/model_epoch_last.pth --batch_size 32 --num_threads 8 \
+  --results_csv /root/autodl-tmp/reproduced-results.csv \
+  2>&1 | tee /root/autodl-tmp/reproduced-test.log
 ```
 
-Để đối chiếu checkpoint tác giả, dùng `--model_path` trỏ tới
-`upstream/npr/NPR.pth` của repo nhóm (sau `git submodule update --init --recursive`)
-và đặt tên CSV/log riêng. Runner hỗ trợ trọng số thuần, wrapper `model`/
-`state_dict`, và bỏ tiền tố DataParallel `module.` trước khi nạp strict.
-Kết quả CSV tác giả đã lưu được tạo bằng một bản `NPR.pth` bỏ tiền tố này;
-việc bỏ tiền tố không thay đổi giá trị trọng số.
+Script snapshot là bản đã dùng cho các CSV/log kèm theo. Nó nạp strict trọng số
+của model tự train; không cần checkpoint tác giả. CUDA GPU cần thiết vì
+`validate.py` dùng `.cuda()`.
 
-## Kiểm tra mã
+## Kiểm tra local
 
 ```bash
 python -B -m unittest discover -s tests -v
 bash -n prepare_autodl_data.sh
 ```
 
-Các test local kiểm tra đường dẫn, nhãn thư mục và chuẩn hóa tên checkpoint,
-không thay thế chạy GPU với dataset thật. CSV/log đi kèm là kết quả AutoDL
-đã chạy; thời gian test phụ thuộc máy và I/O.
-
-## Bàn giao model
-
-Model tự train hiện được lưu ngoài Git; SHA-256 và tên file nằm trong
-`results/checkpoint-manifest.json`. Thành viên có model cần chuyển riêng
-qua kho lưu trữ của nhóm và kiểm tra hash trước khi dùng. Chưa có URL tải
-model tự train được công bố trong nhánh này.
+Unit test kiểm tra tìm đường dẫn và cấu trúc nhãn. Kết quả GPU trong bản bàn
+giao là thực nghiệm AutoDL được ghi trong log; quá trình đóng gói local
+không chạy lại huấn luyện hoặc suy luận GPU.

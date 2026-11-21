@@ -3,22 +3,13 @@ import csv
 import os
 import random
 import time
-from collections import OrderedDict
 from pathlib import Path
 
 GENERATORS = ('progan', 'stylegan', 'stylegan2', 'biggan',
               'cyclegan', 'stargan', 'gaugan', 'deepfake')
 DEFAULT_DATA = '/root/autodl-tmp/CNNDetection/extracted/test'
-
-
-def checkpoint_weights(state):
-    """Accept raw, wrapped and DataParallel checkpoints without changing weights."""
-    if 'model' in state:
-        state = state['model']
-    elif 'state_dict' in state:
-        state = state['state_dict']
-    return OrderedDict((key[7:] if key.startswith('module.') else key, value)
-                       for key, value in state.items())
+DEFAULT_MODEL = ('/root/autodl-tmp/checkpoints/'
+                 'NPR-4class-2026_11_21_05_53_01/model_epoch_last.pth')
 
 
 def check_test_layout(root):
@@ -51,7 +42,7 @@ def main():
     class BenchmarkOptions(TestOptions):
         def initialize(self, parser):
             parser = super().initialize(parser)
-            parser.set_defaults(dataroot=DEFAULT_DATA,
+            parser.set_defaults(dataroot=DEFAULT_DATA, model_path=DEFAULT_MODEL,
                                 batch_size=32, num_threads=8)
             parser.add_argument('--results_csv',
                                 default='/root/autodl-tmp/npr-test-results.csv')
@@ -60,8 +51,8 @@ def main():
     opt = BenchmarkOptions().parse(print_options=False)
     if not opt.gpu_ids or not torch.cuda.is_available():
         raise SystemExit('This evaluator requires a CUDA GPU (the shared validate.py uses CUDA).')
-    if not opt.model_path or not Path(opt.model_path).is_file():
-        raise SystemExit('Provide --model_path /path/to/checkpoint.pth (file must exist).')
+    if not Path(opt.model_path).is_file():
+        raise SystemExit('Checkpoint not found: ' + opt.model_path)
     try:
         check_test_layout(opt.dataroot)
     except ValueError as exc:
@@ -88,7 +79,9 @@ def main():
 
     model = resnet50(num_classes=1)
     state = torch.load(opt.model_path, map_location='cpu')
-    model.load_state_dict(checkpoint_weights(state), strict=True)
+    if isinstance(state, dict) and 'model' in state:
+        state = state['model']
+    model.load_state_dict(state, strict=True)
     model.cuda().eval()
 
     output = Path(opt.results_csv)

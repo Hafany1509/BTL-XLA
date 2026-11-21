@@ -1,0 +1,81 @@
+{
+  "origin": "AutoDL snapshot downloaded to Windows",
+  "files": {
+    "data/__init__.py": {
+      "downloaded_file_sha256": "8a4c0e2aaab51911feffa6e1d4ff5ddf73688d9ddc97898c1d5c5a19ed883115",
+      "lf_text_sha256": "8a4c0e2aaab51911feffa6e1d4ff5ddf73688d9ddc97898c1d5c5a19ed883115"
+    },
+    "data/datasets.py": {
+      "downloaded_file_sha256": "6b82e0bfc5251ba12e94b10bd9a9b8bcb9405472dbd3b10773035dfd5907717f",
+      "lf_text_sha256": "6b82e0bfc5251ba12e94b10bd9a9b8bcb9405472dbd3b10773035dfd5907717f"
+    },
+    "dataset_layout.py": {
+      "downloaded_file_sha256": "a714e54e6e0b358c7d86820cdd699d789f0bcc6b445e044cfae575f5f03243e5",
+      "lf_text_sha256": "a714e54e6e0b358c7d86820cdd699d789f0bcc6b445e044cfae575f5f03243e5"
+    },
+    "networks/__init__.py": {
+      "downloaded_file_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "networks/base_model.py": {
+      "downloaded_file_sha256": "42e6da943db5ca45d25f8372a88ac7e7f8f621fdb56b178ad5be3ceb5c0a1418",
+      "lf_text_sha256": "42e6da943db5ca45d25f8372a88ac7e7f8f621fdb56b178ad5be3ceb5c0a1418"
+    },
+    "networks/resnet.py": {
+      "downloaded_file_sha256": "c7663a02a322dc2a68625535b367e8800df42bacca3d0526cafef8c32168c67e",
+      "lf_text_sha256": "c7663a02a322dc2a68625535b367e8800df42bacca3d0526cafef8c32168c67e"
+    },
+    "networks/trainer.py": {
+      "downloaded_file_sha256": "4774f0b75b02d9b5c7ee76ab11720583583721d8cbbd7fb4caf70ae52ae753ca",
+      "lf_text_sha256": "4774f0b75b02d9b5c7ee76ab11720583583721d8cbbd7fb4caf70ae52ae753ca"
+    },
+    "options/__init__.py": {
+      "downloaded_file_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "options/base_options.py": {
+      "downloaded_file_sha256": "03794cd5ea78d9c9bbde68a5c2ba1b260b88bcc879e3a0efb6336dc1617a6e9d",
+      "lf_text_sha256": "03794cd5ea78d9c9bbde68a5c2ba1b260b88bcc879e3a0efb6336dc1617a6e9d"
+    },
+    "options/test_options.py": {
+      "downloaded_file_sha256": "d0a6e520c9d4a9b034ba237f97d594a0284872879042ba5a7325b601adced10e",
+      "lf_text_sha256": "d0a6e520c9d4a9b034ba237f97d594a0284872879042ba5a7325b601adced10e"
+    },
+    "options/train_options.py": {
+      "downloaded_file_sha256": "6a975fb954e3a07a881b50bce28629014ac3016d4fa2098e979dbf65edef5342",
+      "lf_text_sha256": "6a975fb954e3a07a881b50bce28629014ac3016d4fa2098e979dbf65edef5342"
+    },
+    "prepare_autodl_data.sh": {
+      "downloaded_file_sha256": "cb35c65bf4aa2ba4fcf05fea7dc58e72a988b7d2ef7047446617a375f713a379",
+      "lf_text_sha256": "cb35c65bf4aa2ba4fcf05fea7dc58e72a988b7d2ef7047446617a375f713a379"
+    },
+    "README_AUTODL.md": {
+      "downloaded_file_sha256": "b3aac4dd920d4f167970a6d16c26307cee779fc85b3d5f3a369bf5521e5e9e6b",
+      "lf_text_sha256": "b3aac4dd920d4f167970a6d16c26307cee779fc85b3d5f3a369bf5521e5e9e6b"
+    },
+    "requirements.txt": {
+      "downloaded_file_sha256": "89e3eb8bcdc57ef70f5cd0910605ccf88f8a2b366f0ec5205807062d82525a5d",
+      "lf_text_sha256": "89e3eb8bcdc57ef70f5cd0910605ccf88f8a2b366f0ec5205807062d82525a5d"
+    },
+    "test.py": {
+      "downloaded_file_sha256": "cbe2cdc88347ebbfbfe8b80c5bc6505c57a3e4f9d7757a276ca3b801370a4de2",
+      "lf_text_sha256": "cbe2cdc88347ebbfbfe8b80c5bc6505c57a3e4f9d7757a276ca3b801370a4de2"
+    },
+    "tests/test_dataset_layout.py": {
+      "downloaded_file_sha256": "5bd4768b2ce4205f967cb5f695a74c630cac2673a8f1eb0c46d48a7808a1ea15",
+      "lf_text_sha256": "5bd4768b2ce4205f967cb5f695a74c630cac2673a8f1eb0c46d48a7808a1ea15"
+    },
+    "train.py": {
+      "downloaded_file_sha256": "f89eb8fb5081467629f36b639a3744fa59dab25626935438b70465dc81a41656",
+      "lf_text_sha256": "f89eb8fb5081467629f36b639a3744fa59dab25626935438b70465dc81a41656"
+    },
+    "util.py": {
+      "downloaded_file_sha256": "768864fd22ab5e0698e05e545bf4f3c95afbeaf7cfbd4ab2fd5ab773dfa98832",
+      "lf_text_sha256": "768864fd22ab5e0698e05e545bf4f3c95afbeaf7cfbd4ab2fd5ab773dfa98832"
+    },
+    "validate.py": {
+      "downloaded_file_sha256": "dca8aa2aed02d6630ba4d58feab69e2f80e4f76e803d5365bf35b2b9ca776be3",
+      "lf_text_sha256": "dca8aa2aed02d6630ba4d58feab69e2f80e4f76e803d5365bf35b2b9ca776be3"
+    }
+  }
+}

@@ -38,8 +38,8 @@ class Logger(object):
 
     def flush(self):
         self.terminal.flush()
-
-
+        
+        
 def printSet(set_str):
     set_str = str(set_str)
     num = len(set_str)

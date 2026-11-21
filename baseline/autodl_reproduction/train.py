@@ -87,9 +87,9 @@ if __name__ == '__main__':
 
     train_writer = SummaryWriter(os.path.join(opt.checkpoints_dir, opt.name, "train"))
     val_writer = SummaryWriter(os.path.join(opt.checkpoints_dir, opt.name, "val"))
-
+    
     model = Trainer(opt)
-
+    
     def testmodel():
         if not run_tests:
             return
@@ -103,7 +103,7 @@ if __name__ == '__main__':
             acc, ap, _, _, _, _ = validate(model.model, Testopt)
             accs.append(acc);aps.append(ap)
             print("({} {:10}) acc: {:.1f}; ap: {:.1f}".format(v_id, val, acc*100, ap*100))
-        print("({} {:10}) acc: {:.1f}; ap: {:.1f}".format(v_id+1,'Mean', np.array(accs).mean()*100, np.array(aps).mean()*100));print('*'*25)
+        print("({} {:10}) acc: {:.1f}; ap: {:.1f}".format(v_id+1,'Mean', np.array(accs).mean()*100, np.array(aps).mean()*100));print('*'*25) 
         print(time.strftime("%Y_%m_%d_%H_%M_%S", time.localtime()))
     model.eval();testmodel();
     model.train()
@@ -131,7 +131,7 @@ if __name__ == '__main__':
             print(time.strftime("%Y_%m_%d_%H_%M_%S", time.localtime()), 'changing lr at the end of epoch %d, iters %d' %
                   (epoch, model.total_steps))
             model.adjust_learning_rate()
-
+            
 
         # Validation
         model.eval()
@@ -149,3 +149,4 @@ if __name__ == '__main__':
     model.save_networks('last')
     train_writer.close()
     val_writer.close()
+    
