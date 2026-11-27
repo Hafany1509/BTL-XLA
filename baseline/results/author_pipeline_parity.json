@@ -1,0 +1,22 @@
+[
+  {
+    "path": "D:\\XLA\\NPR-DeepfakeDetection\\datasets\\progan\\airplane\\0_real\\00049.png",
+    "tensor_exact_match": true,
+    "label_match": true
+  },
+  {
+    "path": "D:\\XLA\\NPR-DeepfakeDetection\\datasets\\progan\\airplane\\1_fake\\19957.png",
+    "tensor_exact_match": true,
+    "label_match": true
+  },
+  {
+    "path": "D:\\XLA\\NPR-DeepfakeDetection\\datasets\\sdv1\\imagenet\\0_real\\0_real-n01440764-ILSVRC2012_val_00045880.JPEG",
+    "tensor_exact_match": true,
+    "label_match": true
+  },
+  {
+    "path": "D:\\XLA\\NPR-DeepfakeDetection\\datasets\\sdv1\\imagenet\\1_fake\\1_fake-999-9.png",
+    "tensor_exact_match": true,
+    "label_match": true
+  }
+]

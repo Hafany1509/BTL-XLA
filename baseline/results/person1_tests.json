@@ -1,0 +1,135 @@
+{
+  "tests": [
+    {
+      "test": "1 Environment",
+      "status": "PASS",
+      "evidence": {
+        "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+        "torch": "2.15.0+cpu",
+        "torchvision": "0.29.2+cpu",
+        "device": "cpu"
+      }
+    },
+    {
+      "test": "2 Checkpoint",
+      "status": "PASS",
+      "evidence": {
+        "strict": true,
+        "parameters": 1437761,
+        "sha256": "3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53"
+      }
+    },
+    {
+      "test": "3 Dataset",
+      "status": "PASS",
+      "evidence": [
+        {
+          "Dataset": "progan",
+          "Real": 4000,
+          "Fake": 4000,
+          "Total": 8000,
+          "Valid": 8000,
+          "Invalid": 0
+        },
+        {
+          "Dataset": "stylegan2",
+          "Real": 7988,
+          "Fake": 7988,
+          "Total": 15976,
+          "Valid": 15976,
+          "Invalid": 0
+        },
+        {
+          "Dataset": "sdv1",
+          "Real": 5000,
+          "Fake": 10000,
+          "Total": 15000,
+          "Valid": 15000,
+          "Invalid": 0
+        }
+      ]
+    },
+    {
+      "test": "4 Inference",
+      "status": "PASS",
+      "evidence": "Real/Fake, PNG/JPEG, PIL/path, missing/corrupt input, repeated calls, original author transform and logit parity passed"
+    },
+    {
+      "test": "5 Evaluation",
+      "status": "PASS",
+      "evidence": [
+        {
+          "Dataset": "progan",
+          "Total": 8000,
+          "Accuracy": 0.997875,
+          "AP": 0.999916305279526
+        },
+        {
+          "Dataset": "stylegan2",
+          "Total": 15976,
+          "Accuracy": 0.9839133700550826,
+          "AP": 0.9993641769193573
+        },
+        {
+          "Dataset": "sdv1",
+          "Total": 15000,
+          "Accuracy": 0.9689333333333333,
+          "AP": 0.9958196328519984
+        }
+      ]
+    },
+    {
+      "test": "6 Results",
+      "status": "PASS",
+      "evidence": {
+        "real_evaluated_paths": 38976,
+        "all_eligible_covered": true
+      }
+    },
+    {
+      "test": "7 Visualization",
+      "status": "PASS",
+      "evidence": {
+        "per_source_plots": 21,
+        "summary_plots": 3
+      }
+    },
+    {
+      "test": "8 Notebook",
+      "status": "PASS",
+      "evidence": {
+        "status": "PASS",
+        "kernel_executable": "D:\\XLA\\.venv\\Scripts\\python.exe",
+        "kernel_name": "npr-person1",
+        "code_cells": 19,
+        "executed_cells": 19,
+        "elapsed_seconds": 8.451683699997375
+      }
+    },
+    {
+      "test": "9 Reproducibility",
+      "status": "PASS",
+      "evidence": {
+        "seed": 100,
+        "fingerprint": "676294d8e6b553b79c4f37340989a868cec08dd58a543a6689d73aab81db8cac",
+        "resume_preserved_predictions": true
+      }
+    },
+    {
+      "test": "10 Handover",
+      "status": "PASS",
+      "evidence": {
+        "independent_process": true,
+        "result": {
+          "label": "REAL",
+          "raw_logit": -43.209312438964844,
+          "fake_score": 1.7156712058736322e-19,
+          "inference_time_ms": 47.424500007764436,
+          "model_version": "npr-sha256:3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53",
+          "checkpoint_sha256": "3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53"
+        }
+      }
+    }
+  ],
+  "elapsed_seconds": 8.02654929998971
+}

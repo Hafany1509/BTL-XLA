@@ -1,0 +1,2 @@
+﻿filename,label,fake_score,raw_logit,inference_time_ms,forward_time_ms
+test.jpg,REAL,5.3450009050677794e-17,-37.4677848815918,117.30910000005679,78.91209999979765

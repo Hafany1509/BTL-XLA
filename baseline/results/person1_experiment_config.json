@@ -1,0 +1,68 @@
+{
+  "seed": 100,
+  "device": "cpu",
+  "batch_size": 16,
+  "threads": 4,
+  "threshold": 0.5,
+  "threshold_operator": ">",
+  "positive_label": "Fake=1",
+  "negative_label": "Real=0",
+  "checkpoint": "D:\\XLA\\NPR-DeepfakeDetection\\NPR.pth",
+  "checkpoint_sha256": "3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53",
+  "architecture": "networks.resnet.resnet50(num_classes=1)",
+  "parameters": 1437761,
+  "strict_load": true,
+  "state_entries": 146,
+  "preprocessing": {
+    "resize": [
+      256,
+      256
+    ],
+    "interpolation": "bilinear",
+    "crop": false,
+    "flip": false,
+    "rgb": true,
+    "exif_transpose": false,
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "run_fingerprint": "676294d8e6b553b79c4f37340989a868cec08dd58a543a6689d73aab81db8cac",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "packages": {
+    "torch": "2.15.0+cpu",
+    "torchvision": "0.29.2+cpu",
+    "numpy": "2.4.6",
+    "pandas": "3.1.1",
+    "scikit-learn": "1.9.1",
+    "matplotlib": "3.11.2",
+    "Pillow": "13.0.0",
+    "tqdm": "4.70.1",
+    "nbformat": "5.11.1",
+    "nbclient": "0.11.0",
+    "ipykernel": "7.4.0"
+  },
+  "scope": "all eligible rows of the selected manifest; duplicates retained",
+  "source_provenance": "Not Verified",
+  "started_or_resumed_utc": "2026-11-11T23:24:18.618499+00:00",
+  "timing": "read/decode + preprocess + CPU forward + sigmoid; batch elapsed divided equally among images; excludes audit and plots",
+  "model_version": "npr-sha256:3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53",
+  "checkpoint_format": "wrapped_model",
+  "image_root": "D:\\XLA\\NPR-DeepfakeDetection",
+  "metadata_schema_version": 2,
+  "measurement_provenance": {
+    "original_run_fingerprint": "f09d4f1c0d88b9d3b3e6749851dea6f791bdd933bd49ee3cf097760400423b75",
+    "archived_sources": "results/person1_before_handover_v2",
+    "original_predictions_sha256": "f0373f57d84860f54ff55e5626906065bd960aba37aa35a6ae62ac9f87fda2ea",
+    "full_inference_rerun": false,
+    "upgrade": "Only image_id/model metadata added; all original CSV field strings preserved"
+  },
+  "last_resumed_utc": "2026-11-12T09:27:29.517047+00:00"
+}

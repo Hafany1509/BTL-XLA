@@ -1,0 +1,8 @@
+{
+  "status": "NOT RUN",
+  "reviewer": null,
+  "review_date": null,
+  "team_approval": null,
+  "reason": "Requires another actual team member to replay and review; agent tests do not constitute human acceptance",
+  "instructions": "HANDOVER_PERSON1.md"
+}

@@ -1,0 +1,21 @@
+  Dataset  Real  Fake  Total  Accuracy  Precision  Recall  F1  AP  ROC_AUC  TN  FP  FN  TP     Time  MeanTime_ms  Eligible  Complete     Metric_note                                                               model_version
+   progan     2     2      4       1.0        1.0     1.0 1.0 1.0      1.0   2   0   0   2 0.321114     80.27855         4      True Fake=1 positive npr-sha256:3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53
+stylegan2     2     2      4       1.0        1.0     1.0 1.0 1.0      1.0   2   0   0   2 0.281179     70.29465         4      True Fake=1 positive npr-sha256:3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53
+     sdv1     2     2      4       1.0        1.0     1.0 1.0 1.0      1.0   2   0   0   2 0.299319     74.82970         4      True Fake=1 positive npr-sha256:3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53
+
+
+Verify manifest files:   0%|          | 0/12 [00:00<?, ?it/s]
+Verify manifest files: 100%|██████████| 12/12 [00:00<00:00, 244.03it/s]
+D:\XLA\NPR-DeepfakeDetection\evaluate_checkpoint.py:117: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  cached=pd.read_csv(pred_path,float_precision='round_trip')
+
+Inference progan: 0it [00:00, ?it/s]
+Inference progan: 0it [00:00, ?it/s]
+
+Inference stylegan2: 0it [00:00, ?it/s]
+Inference stylegan2: 0it [00:00, ?it/s]
+
+Inference sdv1: 0it [00:00, ?it/s]
+Inference sdv1: 0it [00:00, ?it/s]
+D:\XLA\NPR-DeepfakeDetection\evaluate_checkpoint.py:177: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  predictions=pd.read_csv(pred_path,float_precision='round_trip')

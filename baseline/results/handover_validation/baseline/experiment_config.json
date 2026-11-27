@@ -1,0 +1,59 @@
+{
+  "seed": 100,
+  "device": "cpu",
+  "batch_size": 4,
+  "threads": 2,
+  "threshold": 0.5,
+  "threshold_operator": ">",
+  "positive_label": "Fake=1",
+  "negative_label": "Real=0",
+  "checkpoint": "D:\\XLA\\NPR-DeepfakeDetection\\NPR.pth",
+  "checkpoint_sha256": "3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53",
+  "model_version": "npr-sha256:3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53",
+  "checkpoint_format": "wrapped_model",
+  "architecture": "networks.resnet.resnet50(num_classes=1)",
+  "parameters": 1437761,
+  "strict_load": true,
+  "state_entries": 146,
+  "preprocessing": {
+    "resize": [
+      256,
+      256
+    ],
+    "interpolation": "bilinear",
+    "crop": false,
+    "flip": false,
+    "rgb": true,
+    "exif_transpose": false,
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "run_fingerprint": "35de7c02b2d2d02e489824a516eabf6e7b5e327b4c3263d37448a5838be7c5ce",
+  "image_root": "D:\\XLA\\NPR-DeepfakeDetection",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "packages": {
+    "torch": "2.15.0+cpu",
+    "torchvision": "0.29.2+cpu",
+    "numpy": "2.4.6",
+    "pandas": "3.1.1",
+    "scikit-learn": "1.9.1",
+    "matplotlib": "3.11.2",
+    "Pillow": "13.0.0",
+    "tqdm": "4.70.1",
+    "nbformat": "5.11.1",
+    "nbclient": "0.11.0",
+    "ipykernel": "7.4.0"
+  },
+  "source_provenance": "Not Verified",
+  "scope": "all eligible rows of the selected manifest; duplicates retained",
+  "last_resumed_utc": "2026-11-12T09:27:46.831715+00:00",
+  "timing": "read/decode + preprocess + CPU forward + sigmoid; batch elapsed divided equally among images; excludes audit and plots"
+}

@@ -1,0 +1,49 @@
+{
+  "summary": [
+    {
+      "dataset": "progan",
+      "images_inspected": 8000,
+      "image_info_keys": {},
+      "exif_tags": {},
+      "formats": {
+        "PNG": 8000
+      },
+      "filename_patterns": {
+        "<number>.png": 8000
+      }
+    },
+    {
+      "dataset": "stylegan2",
+      "images_inspected": 15976,
+      "image_info_keys": {},
+      "exif_tags": {},
+      "formats": {
+        "PNG": 15976
+      },
+      "filename_patterns": {
+        "<number>.png": 15976
+      }
+    },
+    {
+      "dataset": "sdv1",
+      "images_inspected": 15000,
+      "image_info_keys": {
+        "jfif": 5000,
+        "jfif_version": 5000,
+        "jfif_unit": 5000,
+        "jfif_density": 5000
+      },
+      "exif_tags": {},
+      "formats": {
+        "JPEG": 5000,
+        "PNG": 10000
+      },
+      "filename_patterns": {
+        "<number>_fake-<number>-<number>.png": 10000,
+        "<number>_real-n<number>-ILSVRC<number>_val_<number>.JPEG": 5000
+      }
+    }
+  ],
+  "potential_generation_metadata": [],
+  "interpretation": "Image metadata can be missing or edited. No metadata alone proves benchmark split. Inspect candidate metadata before claiming generator identity."
+}

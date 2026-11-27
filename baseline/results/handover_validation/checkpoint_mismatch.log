@@ -1,0 +1,13 @@
+
+
+Verify manifest files:   0%|          | 0/12 [00:00<?, ?it/s]
+Verify manifest files: 100%|██████████| 12/12 [00:00<00:00, 281.88it/s]
+Traceback (most recent call last):
+  File "D:\XLA\NPR-DeepfakeDetection\evaluate_checkpoint.py", line 210, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "D:\XLA\NPR-DeepfakeDetection\evaluate_checkpoint.py", line 206, in main
+    run_evaluation(frame,checkpoint=args.checkpoint,output=args.output,image_root=args.image_root,
+  File "D:\XLA\NPR-DeepfakeDetection\evaluate_checkpoint.py", line 114, in run_evaluation
+    raise ValueError('Cache mismatch. Choose a NEW --output for a different checkpoint, manifest, batch size or protocol.')
+ValueError: Cache mismatch. Choose a NEW --output for a different checkpoint, manifest, batch size or protocol.

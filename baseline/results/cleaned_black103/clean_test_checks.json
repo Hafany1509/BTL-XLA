@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "retained_paths": 38873,
+  "excluded_paths": 103,
+  "original_measured_fields_exact": true,
+  "image_ids_preserved": true,
+  "cleaned_metrics_recomputed_and_verified": true,
+  "sdv1_confusion_matrix": [
+    [
+      4914,
+      86
+    ],
+    [
+      277,
+      9620
+    ]
+  ],
+  "original_baseline_artifacts_preserved": true,
+  "source_images_preserved": true
+}

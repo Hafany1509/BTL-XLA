@@ -1,0 +1,7 @@
+﻿{
+    "processor":  "AMD Ryzen 5 7640HS w/ Radeon 760M Graphics     ",
+    "logical_processors":  12,
+    "platform":  "Microsoft Windows NT 10.0.26200.0",
+    "evaluation_threads":  4,
+    "batch_size":  16
+}

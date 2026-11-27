@@ -1,0 +1,17 @@
+1 Environment PASS
+2 Checkpoint PASS
+3 Dataset PASS
+4 Inference PASS
+5 Evaluation PASS
+6 Results PASS
+7 Visualization PASS
+8 Notebook PASS
+Inference progan: 0it [00:00, ?it/s]Inference progan: 0it [00:00, ?it/s]
+Inference stylegan2: 0it [00:00, ?it/s]Inference stylegan2: 0it [00:00, ?it/s]
+Inference sdv1: 0it [00:00, ?it/s]Inference sdv1: 0it [00:00, ?it/s]
+  Dataset  Real  Fake  Total  Accuracy  Precision   Recall       F1       AP  ROC_AUC   TN  FP  FN   TP       Time  MeanTime_ms  Eligible  Complete     Metric_note                                                               model_version
+   progan  4000  4000   8000  0.997875   0.998249 0.997500 0.997874 0.999916 0.999902 3993   7  10 3990 344.315824    43.039478      8000      True Fake=1 positive npr-sha256:3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53
+stylegan2  7988  7988  15976  0.983913   0.997298 0.970456 0.983694 0.999364 0.999409 7967  21 236 7752 708.800316    44.366570     15976      True Fake=1 positive npr-sha256:3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53
+     sdv1  5000 10000  15000  0.968933   0.991140 0.962000 0.976352 0.995820 0.995035 4914  86 380 9620 715.573088    47.704873     15000      True Fake=1 positive npr-sha256:3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53
+9 Reproducibility PASS
+10 Handover PASS

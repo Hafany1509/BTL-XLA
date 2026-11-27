@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "paired_images": 12,
+  "baseline_replay_requested": true,
+  "equivalent_within_tolerance": true,
+  "reference_model": "npr-sha256:3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53",
+  "candidate_model": "npr-sha256:3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53",
+  "full_benchmark_verified": false
+}
