@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NPR · Phát hiện ảnh sinh bởi mô hình</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="wrap masthead-row">
+      <div>
+        <h1>NPR <span class="thin">— phát hiện ảnh sinh bởi mô hình</span></h1>
+      </div>
+      <p id="status" class="status">đang kết nối…</p>
+    </div>
+  </header>
+
+  <main class="wrap columns">
+    <section class="col-input">
+      <h2>Ảnh đầu vào</h2>
+      <label id="dropzone" class="dropzone" for="file">
+        <input id="file" type="file" accept="image/png,image/jpeg" hidden>
+        <img id="preview" alt="Ảnh đã chọn" hidden>
+        <span id="drop-hint" class="drop-hint">Thả ảnh vào khung này hoặc bấm để chọn file<br><small>JPG hoặc PNG, tối đa 10 MB</small></span>
+      </label>
+      <p id="file-info" class="note"></p>
+
+      <p class="label">Hoặc dùng ảnh trong tập kiểm thử</p>
+      <ul id="sample-list" class="samples"></ul>
+
+      <h2>Thiết lập</h2>
+      <fieldset>
+        <legend class="label">Mô hình</legend>
+        <div id="model-list" class="models"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend class="label">Nén lại bằng JPEG trước khi đưa vào mô hình</legend>
+        <div class="quality">
+          <label><input type="radio" name="quality" value="0" checked> giữ nguyên</label>
+          <label><input type="radio" name="quality" value="90"> q90</label>
+          <label><input type="radio" name="quality" value="70"> q70</label>
+          <label><input type="radio" name="quality" value="50"> q50</label>
+        </div>
+        <p class="note">Nén giống ảnh đăng lên mạng xã hội. Quality càng thấp, chi tiết tần số cao bị lượng tử hóa mất càng nhiều.</p>
+      </fieldset>
+
+      <button id="run" class="run" disabled>Chạy</button>
+      <p id="error" class="error" role="alert" hidden></p>
+    </section>
+
+    <section class="col-result" aria-live="polite">
+      <h2>Kết quả</h2>
+      <div id="results">
+        <p class="placeholder">Chưa có kết quả. Chọn ảnh ở cột bên trái rồi bấm <b>Chạy</b>.</p>
+      </div>
+      <p id="meta" class="note"></p>
+
+      <h3>Cách đọc</h3>
+      <ol class="explain">
+        <li><code>fake_score</code> là xác suất mô hình cho rằng ảnh do AI tạo, từ 0 đến 1. Lớn hơn 0,5 thì kết luận là ảnh AI. Vạch đứng trên thanh đánh dấu ngưỡng 0,5.</li>
+        <li><i>NPR gốc</i> dùng trọng số tác giả công bố. Hai bản fine-tune do nhóm huấn luyện thêm, khác nhau duy nhất ở bước tăng cường bằng nén JPEG.</li>
+        <li>Mã phiên bản là 12 ký tự đầu của SHA-256 checkpoint, dùng để đối chiếu với bảng số liệu trong báo cáo.</li>
+        <li>Kết quả chỉ để tham khảo, không phải bằng chứng về nguồn gốc của ảnh.</li>
+      </ol>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
