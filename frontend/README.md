@@ -1,5 +1,58 @@
-# Giao diện demo NPR
+# Web demo NPR
 
-Thành viên 3 phụ trách giao diện tải ảnh, xem trước, hiển thị trạng thái xử lý và thông báo lỗi file. Dùng dữ liệu mẫu để phát triển giao diện trong khi thành viên 1 tái lập baseline.
+Trang web cho phép tải một ảnh JPG/PNG lên, chọn mô hình và xem nhãn "Ảnh thật" hoặc "Ảnh AI" kèm điểm `fake_score`. Có thể nén lại ảnh ở JPEG q90/q70/q50 ngay trên máy chủ trước khi dự đoán, dùng đúng cách nén của thí nghiệm (lấy mẫu màu 4:2:0).
 
-Khi hàm dự đoán sẵn sàng, tích hợp bản gốc trước. Sau khi nhận checkpoint cải tiến, thêm khả năng chạy hai bản trên cùng một ảnh. Hiển thị `fake_score` là điểm mô hình nghiêng về ảnh AI và ghi rõ phiên bản mô hình.
+## Cấu trúc
+
+| Tệp | Nội dung |
+|---|---|
+| `app.py` | Backend FastAPI. Nạp các checkpoint một lần khi khởi động và gọi `predict()` của `baseline/inference.py` |
+| `static/index.html`, `static/style.css`, `static/app.js` | Giao diện: tải ảnh, xem trước, chọn mô hình và mức nén, hiển thị kết quả |
+| `samples/` | 3 ảnh mẫu: ảnh thật ProGAN, ảnh giả SD v1 (PNG gốc) và cùng ảnh giả đó sau khi nén q50 |
+
+## Chạy
+
+Cần môi trường đã chạy được phần `baseline/` (PyTorch, torchvision, Pillow) và submodule `upstream/npr`. Cài thêm thư viện web:
+
+```powershell
+python -m pip install -r frontend/requirements.txt
+```
+
+Chạy từ thư mục gốc của repo:
+
+```powershell
+python -m uvicorn frontend.app:app --port 8000
+```
+
+Mở http://localhost:8000.
+
+## Mô hình
+
+| Khóa | Tên hiển thị | Checkpoint |
+|---|---|---|
+| `baseline` | NPR gốc | `upstream/npr/NPR.pth` (trọng số tác giả) |
+| `control` | Fine-tune đối chứng | `outputs/finetune-pilot/npr_control.pth` |
+| `jpeg` | Fine-tune JPEG | `outputs/finetune-pilot/npr_jpeg.pth` |
+
+Hai checkpoint fine-tune không có trong Git. Nếu đặt ở thư mục khác, khai báo bằng biến môi trường `NPR_FINETUNE_DIR` trước khi chạy. Thiếu checkpoint nào thì mô hình đó hiện "Không khả dụng", các mô hình còn lại vẫn chạy.
+
+## API
+
+| Phương thức | Đường dẫn | Mô tả |
+|---|---|---|
+| GET | `/api/health` | Trạng thái máy chủ và danh sách mô hình |
+| POST | `/api/predict` | Form multipart: `image` (JPG/PNG, tối đa 10 MB), `models_csv` (ví dụ `baseline,jpeg`), `jpeg_quality` (0, 90, 70 hoặc 50) |
+| GET | `/api/samples` | Danh sách ảnh mẫu |
+
+Lỗi trả về mã 413 (file quá lớn), 415 (không phải JPG/PNG), 422 (file hỏng, tham số sai) hoặc 503 (mô hình chưa nạp được), kèm thông báo tiếng Việt.
+
+## Kịch bản demo đã kiểm tra (27/11/2026)
+
+| Ảnh | NPR gốc | Đối chứng | Fine-tune JPEG |
+|---|---|---|---|
+| ProGAN thật, PNG gốc | Ảnh thật | Ảnh thật | Ảnh thật |
+| SD v1 giả, PNG gốc | Ảnh AI (1,0000) | Ảnh AI | Ảnh AI |
+| SD v1 giả, nén q90 trên máy chủ | Ảnh thật (0,0235) | Ảnh thật (0,0275) | Ảnh AI (0,6741) |
+| SD v1 giả, nén q50 (file mẫu hoặc nén trên máy chủ) | Ảnh thật | Ảnh thật | Ảnh AI (0,9367) |
+
+Điểm 0,9367 trùng với kết quả của thí nghiệm trong `experiments/HANDOVER.md`, xác nhận demo dùng cùng tiền xử lý và cùng cách nén với thí nghiệm.
