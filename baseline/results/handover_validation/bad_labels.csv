@@ -1,0 +1,2 @@
+dataset,image_path,true_label,label_status,category,extension,width,height,format,valid,error,sha256,file_bytes,eligible,image_id
+progan,datasets/progan/airplane/0_real/00049.png,2,known,airplane,.png,256,256,PNG,True,,ba355420a7b0e05847f4161fc123b999d95e2af7838f97de882a1ac6741095b8,85605,True,img-6edabd436056a59757e11909e4ba64bd0b077f46acab8b529dfec0387afd8b95

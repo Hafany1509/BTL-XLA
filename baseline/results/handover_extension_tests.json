@@ -1,0 +1,84 @@
+{
+  "tests": [
+    {
+      "test": "Checkpoint formats and predict(image, model)",
+      "status": "PASS",
+      "evidence": {
+        "wrapped": "wrapped_model",
+        "flat": "flat_state_dict",
+        "strict": true,
+        "frontend_api": true
+      }
+    },
+    {
+      "test": "Explicit manifest/checkpoint/output CLI",
+      "status": "PASS",
+      "evidence": {
+        "actual_images": 12,
+        "datasets": [
+          "progan",
+          "stylegan2",
+          "sdv1"
+        ],
+        "batch_size": 4,
+        "threads": 2
+      }
+    },
+    {
+      "test": "Completed-run resume",
+      "status": "PASS",
+      "evidence": "Completed cache preserved byte-for-byte"
+    },
+    {
+      "test": "Interrupted-run resume",
+      "status": "PASS",
+      "evidence": {
+        "cached_actual_images": 4,
+        "newly_inferred_actual_images": 8,
+        "total": 12
+      }
+    },
+    {
+      "test": "Checkpoint cache isolation",
+      "status": "PASS",
+      "evidence": "Different checkpoint rejected without modifying prior predictions"
+    },
+    {
+      "test": "External labeled folder and flat-checkpoint CLI",
+      "status": "PASS",
+      "evidence": {
+        "actual_images": 2,
+        "source_outside_project": true,
+        "flat_checkpoint_strict": true
+      }
+    },
+    {
+      "test": "Unknown label rejection",
+      "status": "PASS",
+      "evidence": "Unknown numeric label rejected before inference"
+    },
+    {
+      "test": "Paired image-ID replay comparison",
+      "status": "PASS",
+      "evidence": {
+        "status": "PASS",
+        "paired_images": 12,
+        "baseline_replay_requested": true,
+        "equivalent_within_tolerance": true,
+        "reference_model": "npr-sha256:3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53",
+        "candidate_model": "npr-sha256:3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53",
+        "full_benchmark_verified": false
+      }
+    },
+    {
+      "test": "Historical full-baseline preservation",
+      "status": "PASS",
+      "evidence": {
+        "original_rows": 38976,
+        "all_original_csv_fields_exact": true,
+        "metrics_file_unchanged": true
+      }
+    }
+  ],
+  "scope": "real small integration tests; historical full baseline preserved; not a new full benchmark run"
+}

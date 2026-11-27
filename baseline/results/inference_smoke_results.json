@@ -1,0 +1,35 @@
+[
+  {
+    "image_path": "datasets/progan/airplane/0_real/00049.png",
+    "true_label": 0,
+    "format": "PNG",
+    "label": "REAL",
+    "raw_logit": -43.209312438964844,
+    "fake_score": 1.7156712058736322e-19,
+    "inference_time_ms": 49.32419999386184,
+    "model_version": "npr-sha256:3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53",
+    "checkpoint_sha256": "3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53"
+  },
+  {
+    "image_path": "datasets/progan/airplane/1_fake/00049.png",
+    "true_label": 1,
+    "format": "PNG",
+    "label": "FAKE",
+    "raw_logit": 107.86994934082031,
+    "fake_score": 1.0,
+    "inference_time_ms": 39.04030000558123,
+    "model_version": "npr-sha256:3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53",
+    "checkpoint_sha256": "3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53"
+  },
+  {
+    "image_path": "datasets/sdv1/imagenet/0_real/0_real-n01440764-ILSVRC2012_val_00045880.JPEG",
+    "true_label": 0,
+    "format": "JPEG",
+    "label": "REAL",
+    "raw_logit": -44.28411865234375,
+    "fake_score": 5.856681721180373e-20,
+    "inference_time_ms": 33.37279999686871,
+    "model_version": "npr-sha256:3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53",
+    "checkpoint_sha256": "3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53"
+  }
+]

@@ -1,0 +1,22 @@
+D:\XLA\NPR-DeepfakeDetection\verify_handover_extensions.py:23: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  baseline=pd.read_csv(ROOT/'results/per_image_predictions.csv',float_precision='round_trip')
+Checkpoint formats and predict(image, model) PASS
+Explicit manifest/checkpoint/output CLI PASS
+Completed-run resume PASS
+Inference progan: 0it [00:00, ?it/s]Inference progan: 0it [00:00, ?it/s]
+Inference stylegan2:   0%|          | 0/1 [00:00<?, ?it/s]Inference stylegan2: 100%|██████████| 1/1 [00:00<00:00,  5.04it/s]
+Inference sdv1:   0%|          | 0/1 [00:00<?, ?it/s]Inference sdv1: 100%|██████████| 1/1 [00:00<00:00,  5.04it/s]
+  Dataset  Real  Fake  Total  Accuracy  Precision  Recall  F1  AP  ROC_AUC  TN  FP  FN  TP     Time  MeanTime_ms  Eligible  Complete     Metric_note                                                               model_version
+   progan     2     2      4       1.0        1.0     1.0 1.0 1.0      1.0   2   0   0   2 0.321114    80.278550         4      True Fake=1 positive npr-sha256:3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53
+stylegan2     2     2      4       1.0        1.0     1.0 1.0 1.0      1.0   2   0   0   2 0.197899    49.474750         4      True Fake=1 positive npr-sha256:3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53
+     sdv1     2     2      4       1.0        1.0     1.0 1.0 1.0      1.0   2   0   0   2 0.198435    49.608775         4      True Fake=1 positive npr-sha256:3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53
+Interrupted-run resume PASS
+Checkpoint cache isolation PASS
+External labeled folder and flat-checkpoint CLI PASS
+Unknown label rejection PASS
+  Dataset  Total_reference  Accuracy_reference  AP_reference  F1_reference  Total_candidate  Accuracy_candidate  AP_candidate  F1_candidate  Accuracy_delta  AP_delta  F1_delta
+   progan                4                 1.0           1.0           1.0                4                 1.0           1.0           1.0             0.0       0.0       0.0
+stylegan2                4                 1.0           1.0           1.0                4                 1.0           1.0           1.0             0.0       0.0       0.0
+     sdv1                4                 1.0           1.0           1.0                4                 1.0           1.0           1.0             0.0       0.0       0.0
+Paired image-ID replay comparison PASS
+Historical full-baseline preservation PASS

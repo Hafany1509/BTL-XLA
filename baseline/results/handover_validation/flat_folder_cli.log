@@ -1,0 +1,13 @@
+     Dataset  Real  Fake  Total  Accuracy  Precision  Recall  F1  AP  ROC_AUC  TN  FP  FN  TP     Time  MeanTime_ms  Eligible  Complete     Metric_note                                                               model_version
+folder_smoke     1     1      2       1.0        1.0     1.0 1.0 1.0      1.0   1   0   0   1 0.141268     70.63375         2      True Fake=1 positive npr-sha256:b67a91555ce786a6d0463ff0cb2b0b874d1c3f971b0e3febd2ae5618a80f7e8a
+
+
+Verify manifest files:   0%|          | 0/2 [00:00<?, ?it/s]
+Verify manifest files: 100%|██████████| 2/2 [00:00<00:00, 337.69it/s]
+D:\XLA\NPR-DeepfakeDetection\evaluate_checkpoint.py:117: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  cached=pd.read_csv(pred_path,float_precision='round_trip')
+
+Inference folder_smoke: 0it [00:00, ?it/s]
+Inference folder_smoke: 0it [00:00, ?it/s]
+D:\XLA\NPR-DeepfakeDetection\evaluate_checkpoint.py:177: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  predictions=pd.read_csv(pred_path,float_precision='round_trip')

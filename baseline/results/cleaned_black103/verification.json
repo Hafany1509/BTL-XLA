@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "audited_files": 38976,
+  "excluded_paths": 103,
+  "retained_paths": 38873,
+  "excluded_fake": 103,
+  "excluded_real": 0,
+  "all_original_input_hashes_verified": true,
+  "selected_prediction_fields_preserved": true,
+  "inference_reexecuted": false,
+  "original_artifacts": {
+    "data_manifest.csv": {
+      "sha256": "b0057aa0686a7daae8a76b1b70e3ef35991465c05f9fc3d9432c5e6ef9bc5dd6",
+      "unchanged": true
+    },
+    "per_image_predictions.csv": {
+      "sha256": "82db480f6916ded5bbf98f9d9f70afb421b3d99f89e027f884df88ca5a64993a",
+      "unchanged": true
+    },
+    "baseline_metrics.csv": {
+      "sha256": "c8c97db1f2374ed34e565a09c0c5011f18fe5ba5116e64cf7db4c94777f4fe45",
+      "unchanged": true
+    }
+  }
+}

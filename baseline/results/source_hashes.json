@@ -1,0 +1,61 @@
+{
+  "commit": "781ced3f7ca2cdc69ec9dd4ef27e8d0b3c07752a",
+  "files": [
+    {
+      "path": "networks/resnet.py",
+      "git_blob": "2a5f40ae344bb6e292c89cfb265dbf059829e5b4",
+      "head_blob": "2a5f40ae344bb6e292c89cfb265dbf059829e5b4",
+      "unchanged": true,
+      "sha256": "b0101f67eeece66bbf65add6fbbfdc12811b77910091fa3b12ffea5fb58c14df"
+    },
+    {
+      "path": "data/datasets.py",
+      "git_blob": "d2d8a9b603abed4287e4d0dd1a7d29f6624d8d74",
+      "head_blob": "d2d8a9b603abed4287e4d0dd1a7d29f6624d8d74",
+      "unchanged": true,
+      "sha256": "f547bd61f4af02ac819fc44a7bd870a892efe17bcbb37e5e3ea27220d014c329"
+    },
+    {
+      "path": "data/__init__.py",
+      "git_blob": "664e6eeaa752b54f53bdaf076766094a5dd86c1f",
+      "head_blob": "664e6eeaa752b54f53bdaf076766094a5dd86c1f",
+      "unchanged": true,
+      "sha256": "abd59cd84056ece56b666d32520a0744770935c5fc00e5e8dc3efef4ee2d82fb"
+    },
+    {
+      "path": "options/base_options.py",
+      "git_blob": "1f67932869cb1e76049b9dbdee7ec606c3b541cc",
+      "head_blob": "1f67932869cb1e76049b9dbdee7ec606c3b541cc",
+      "unchanged": true,
+      "sha256": "d78c3b801bfca3b5fa9228c86277c0445abb66f3d14b84a4899688805ff97731"
+    },
+    {
+      "path": "options/test_options.py",
+      "git_blob": "1dba350e3cadf758c2dc39e99a55b4e844e7b16d",
+      "head_blob": "1dba350e3cadf758c2dc39e99a55b4e844e7b16d",
+      "unchanged": true,
+      "sha256": "331ccacaa8263809b0f1c4311534d10163bddc9535d9b317dca17f5fd28ac025"
+    },
+    {
+      "path": "test.py",
+      "git_blob": "07966fbe294b93c0eb1f09b4bc119a05c4275817",
+      "head_blob": "07966fbe294b93c0eb1f09b4bc119a05c4275817",
+      "unchanged": true,
+      "sha256": "c5f3b4dd1a97c51fb2422331c9dbdadd70c365deea370ca3eba1e373f19d7b5c"
+    },
+    {
+      "path": "validate.py",
+      "git_blob": "1f55e0fc6bd2d49cfada6b69d3f0fa354fe667f7",
+      "head_blob": "1f55e0fc6bd2d49cfada6b69d3f0fa354fe667f7",
+      "unchanged": true,
+      "sha256": "2d8f06d17fde87d7bb2858ddaa47a1a9320738b898040f24b285986a0ae4e36c"
+    },
+    {
+      "path": "NPR.pth",
+      "git_blob": "2430d34a6d6a1143d46d4276a05536770b1a2a97",
+      "head_blob": "2430d34a6d6a1143d46d4276a05536770b1a2a97",
+      "unchanged": true,
+      "sha256": "3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53"
+    }
+  ]
+}

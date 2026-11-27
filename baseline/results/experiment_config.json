@@ -1,0 +1,112 @@
+{
+  "run_id": "20261111T111954519507Z",
+  "checkpoint": "D:\\XLA\\NPR-DeepfakeDetection\\NPR.pth",
+  "checkpoint_sha256": "3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53",
+  "architecture": "networks.resnet.resnet50(num_classes=1)",
+  "parameters": 1437761,
+  "state_entries": 146,
+  "strict_load": true,
+  "torch_load_options": {
+    "map_location": "cpu",
+    "weights_only": true
+  },
+  "seed": 100,
+  "threshold": 0.5,
+  "label_mapping": {
+    "REAL": 0,
+    "FAKE": 1
+  },
+  "device": "cpu",
+  "preprocessing": {
+    "resize": [
+      256,
+      256
+    ],
+    "interpolation": "bilinear",
+    "no_crop": true,
+    "no_flip": true,
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "rgb": true,
+    "exif_transpose": false,
+    "input_type": "PIL"
+  },
+  "cudnn": {
+    "enabled": false,
+    "deterministic": true,
+    "benchmark": false
+  },
+  "eval_batch_size": 8,
+  "dataset_roots": {
+    "custom": "D:\\XLA\\NPR-DeepfakeDetection\\datasets\\test",
+    "ForenSynths": "D:\\XLA\\NPR-DeepfakeDetection\\datasets\\Generalization_Test\\ForenSynths_test",
+    "DiffusionForensics": "D:\\XLA\\NPR-DeepfakeDetection\\datasets\\Generalization_Test\\DiffusionForensics"
+  },
+  "train_reference_roots": [
+    "D:\\XLA\\NPR-DeepfakeDetection\\datasets\\ForenSynths_train_val\\train",
+    "D:\\XLA\\NPR-DeepfakeDetection\\datasets\\ForenSynths_train_val\\val"
+  ],
+  "protocol_confirmations": {
+    "ForenSynths": {
+      "official_test_split": false,
+      "full_source_set": false,
+      "checkpoint_matches_paper": false,
+      "preprocessing_matches_paper": false,
+      "provenance_note": ""
+    },
+    "DiffusionForensics": {
+      "official_test_split": false,
+      "full_source_set": false,
+      "checkpoint_matches_paper": false,
+      "preprocessing_matches_paper": false,
+      "provenance_note": ""
+    }
+  },
+  "dataset_status": [
+    {
+      "suite": "custom",
+      "source": "custom",
+      "status": "Not evaluated",
+      "issues": "D:\\XLA\\NPR-DeepfakeDetection\\datasets\\test\\real: thiếu thư mục hoặc không có ảnh | D:\\XLA\\NPR-DeepfakeDetection\\datasets\\test\\fake: thiếu thư mục hoặc không có ảnh | không tìm thấy cặp real/fake hoặc 0_real/1_fake",
+      "count": 0
+    },
+    {
+      "suite": "ForenSynths",
+      "source": "*",
+      "status": "Not evaluated",
+      "issues": "Dataset chưa sẵn sàng",
+      "count": 0
+    },
+    {
+      "suite": "DiffusionForensics",
+      "source": "*",
+      "status": "Not evaluated",
+      "issues": "Dataset chưa sẵn sàng",
+      "count": 0
+    }
+  ],
+  "inference_images": 1,
+  "inference_failures": [],
+  "evaluation_images": 0,
+  "pooled_unique_images": 0,
+  "evaluation_failures": [],
+  "evaluation_wall_seconds": 0.0013380999998844345,
+  "cross_source_duplicate_count": 0,
+  "within_source_duplicates": [],
+  "pooled_conflicting_hashes": [],
+  "leakage_audit_limit": "Exact file SHA256 only; transformed/content duplicates and training provenance require manual audit.",
+  "paper_reference": "https://arxiv.org/html/2312.10461v2",
+  "paper_tables": [
+    1,
+    3
+  ],
+  "inference_time_definition": "predict: read + preprocess + transfer + forward + sigmoid + validation; batch: amortized forward"
+}

@@ -1,0 +1,4 @@
+Dataset,Total_reference,Accuracy_reference,AP_reference,F1_reference,Total_candidate,Accuracy_candidate,AP_candidate,F1_candidate,Accuracy_delta,AP_delta,F1_delta
+progan,4,1.0,1.0,1.0,4,1.0,1.0,1.0,0.0,0.0,0.0
+stylegan2,4,1.0,1.0,1.0,4,1.0,1.0,1.0,0.0,0.0,0.0
+sdv1,4,1.0,1.0,1.0,4,1.0,1.0,1.0,0.0,0.0,0.0

@@ -1,0 +1,73 @@
+# Kết quả bàn giao Người 1
+
+Thời điểm lập báo cáo (Asia/Saigon): 2026-11-12T16:28:13.213732+07:00
+
+## Dataset
+
+| Dataset | Real | Fake | Total | Valid | Invalid |
+| --- | --- | --- | --- | --- | --- |
+| progan | 4000 | 4000 | 8000 | 8000 | 0 |
+| stylegan2 | 7988 | 7988 | 15976 | 15976 | 0 |
+| sdv1 | 5000 | 10000 | 15000 | 15000 | 0 |
+
+## Baseline thực tế (metric thang 0–1)
+
+| Dataset | Real | Fake | Total | Accuracy | Precision | Recall | F1 | AP | ROC_AUC | TN | FP | FN | TP | Time | MeanTime_ms | Eligible | Complete | Metric_note |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| progan | 4000 | 4000 | 8000 | 0.997875 | 0.9982486865148862 | 0.9975 | 0.9978742028260598 | 0.999916305279526 | 0.9999015000000001 | 3993 | 7 | 10 | 3990 | 344.3158235998271 | 43.03947794997839 | 8000 | True | Fake=1 positive |
+| stylegan2 | 7988 | 7988 | 15976 | 0.9839133700550826 | 0.9972983404091085 | 0.9704556835252879 | 0.9836939280502506 | 0.9993641769193573 | 0.9994090252805348 | 7967 | 21 | 236 | 7752 | 708.800316199995 | 44.36656961692508 | 15976 | True | Fake=1 positive |
+| sdv1 | 5000 | 10000 | 15000 | 0.9689333333333333 | 0.9911395013393777 | 0.962 | 0.9763523799857912 | 0.9958196328519984 | 0.99503507 | 4914 | 86 | 380 | 9620 | 715.5730882000715 | 47.70487254667144 | 15000 | True | Fake=1 positive |
+
+## Kiểm thử
+
+| test | status |
+| --- | --- |
+| 1 Environment | PASS |
+| 2 Checkpoint | PASS |
+| 3 Dataset | PASS |
+| 4 Inference | PASS |
+| 5 Evaluation | PASS |
+| 6 Results | PASS |
+| 7 Visualization | PASS |
+| 8 Notebook | PASS |
+| 9 Reproducibility | PASS |
+| 10 Handover | PASS |
+
+## Mức hoàn thành
+
+- Hoàn thành: audit toàn bộ dữ liệu local, inference baseline toàn bộ ảnh hợp lệ, metrics/đồ thị, notebook, API và hướng dẫn bàn giao.
+- Hoàn thành một phần: đối chiếu paper theo bản arXiv v2; Comparable=No do chưa xác minh provenance/split và sdv1_new.
+- Chưa hoàn thành: xác minh archive gốc, danh tính generator sdv1 và benchmark CVPR cuối cùng; không thể suy ra từ các file ảnh local.
+
+Cờ chất lượng: xem image_quality_audit.md; ảnh đơn sắc decode được vẫn giữ trong baseline chính nhưng cần kiểm tra thủ công. 103 bản sao ảnh PNG đen của sdv1 gây 103 FN, không phải 103 nội dung độc lập.
+
+Xem README_PERSON1.md, data_audit.md, paper_comparison.md và error_analysis.md để biết nguồn, cách chạy và giới hạn. Không tuyên bố đã tái lập đầy đủ paper.
+
+
+## Bổ sung bàn giao v2
+
+| test | status |
+| --- | --- |
+| Checkpoint formats and predict(image, model) | PASS |
+| Explicit manifest/checkpoint/output CLI | PASS |
+| Completed-run resume | PASS |
+| Interrupted-run resume | PASS |
+| Checkpoint cache isolation | PASS |
+| External labeled folder and flat-checkpoint CLI | PASS |
+| Unknown label rejection | PASS |
+| Paired image-ID replay comparison | PASS |
+| Historical full-baseline preservation | PASS |
+
+Đã bổ sung lựa chọn checkpoint/manifest/output, model_version và image_id; kiểm chứng metadata không đổi số đo gốc. Xem HANDOVER_PERSON1.md. Nghiệm thu bởi thành viên khác: NOT RUN / chưa được xác nhận trong phiên này.
+
+
+## Phiên bản test đã làm sạch theo lựa chọn người dùng
+
+| Dataset | Real | Fake | Total | Accuracy | Precision | Recall | F1 | AP | ROC_AUC | TN | FP | FN | TP | Time | MeanTime_ms | Eligible | Complete | Metric_note |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| progan | 4000 | 4000 | 8000 | 0.997875 | 0.9982486865148862 | 0.9975 | 0.9978742028260598 | 0.999916305279526 | 0.9999015000000001 | 3993 | 7 | 10 | 3990 | 344.3158235998271 | 43.03947794997839 | 8000 | True | Fake=1 positive |
+| stylegan2 | 7988 | 7988 | 15976 | 0.9839133700550826 | 0.9972983404091085 | 0.9704556835252879 | 0.9836939280502506 | 0.9993641769193573 | 0.9994090252805348 | 7967 | 21 | 236 | 7752 | 708.800316199995 | 44.36656961692508 | 15976 | True | Fake=1 positive |
+| sdv1 | 5000 | 9897 | 14897 | 0.9756326777203463 | 0.9911395013393777 | 0.9720117207234515 | 0.9814824261592613 | 0.996000526190644 | 0.9954433969889867 | 4914 | 86 | 277 | 9620 | 710.5944841688182 | 47.700509107123466 | 14897 | True | Fake=1 positive |
+
+Manifest được dùng cho so sánh tiếp theo nằm trong results/cleaned_black103/data_manifest.csv. Loại 103 ảnh có pixel RGB đều bằng 0, còn 38.873 ảnh. Metrics tính lại từ dự đoán đã đo. Người dùng xác nhận dữ liệu là một phần tải từ nguồn tác giả do giới hạn máy. Chi tiết trong results/cleaned_black103/README.md.
+

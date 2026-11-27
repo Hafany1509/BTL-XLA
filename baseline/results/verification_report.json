@@ -1,0 +1,37 @@
+{
+  "python": "D:\\XLA\\.venv\\Scripts\\python.exe",
+  "protected_before": {
+    "networks/resnet.py": "b0101f67eeece66bbf65add6fbbfdc12811b77910091fa3b12ffea5fb58c14df",
+    "train.py": "9a7c7db428af8e1f323924cf1eb433e0336753b1d8c582668985b7e15b24bde1",
+    "test.py": "c5f3b4dd1a97c51fb2422331c9dbdadd70c365deea370ca3eba1e373f19d7b5c",
+    "NPR.pth": "3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53",
+    "01_NPR_Full_RunAll.ipynb": "b9b632b6d49e476493b94aa27f48b13007e1f6f151a3902873e3b6e0560b976c"
+  },
+  "checks": {
+    "nbformat_and_syntax": "passed",
+    "fresh_kernel_actual_input_no_dataset": "passed",
+    "fresh_kernel_fixture_branches": "passed; synthetic test data isolated outside project results",
+    "missing_test_image": "passed",
+    "corrupt_image_and_partial_source": "passed",
+    "known_value_metrics": "passed",
+    "benchmark_category_layout_and_explicit_labels": "passed",
+    "original_files_unchanged": true
+  },
+  "actual_predictions": [
+    {
+      "filename": "test.jpg",
+      "label": "REAL",
+      "fake_score": 5.3450009050677794e-17,
+      "raw_logit": -37.4677848815918,
+      "inference_time_ms": 62.563000000409374,
+      "forward_time_ms": 32.98830000039743
+    }
+  ],
+  "protected_after": {
+    "networks/resnet.py": "b0101f67eeece66bbf65add6fbbfdc12811b77910091fa3b12ffea5fb58c14df",
+    "train.py": "9a7c7db428af8e1f323924cf1eb433e0336753b1d8c582668985b7e15b24bde1",
+    "test.py": "c5f3b4dd1a97c51fb2422331c9dbdadd70c365deea370ca3eba1e373f19d7b5c",
+    "NPR.pth": "3939297e9399e0b992f87211610769d87d899de50d56da0204d6cbda2d483a53",
+    "01_NPR_Full_RunAll.ipynb": "b9b632b6d49e476493b94aa27f48b13007e1f6f151a3902873e3b6e0560b976c"
+  }
+}

@@ -1,0 +1,13 @@
+﻿suite,source,family,status,count,accuracy,AP
+ForenSynths,progan,Nguồn training theo paper,Not evaluated,0,,
+ForenSynths,stylegan,GAN khác,Not evaluated,0,,
+ForenSynths,stylegan2,GAN khác,Not evaluated,0,,
+ForenSynths,biggan,GAN khác,Not evaluated,0,,
+DiffusionForensics,adm,Diffusion chưa dùng trong training theo paper,Not evaluated,0,,
+DiffusionForensics,ddpm,Diffusion chưa dùng trong training theo paper,Not evaluated,0,,
+DiffusionForensics,iddpm,Diffusion chưa dùng trong training theo paper,Not evaluated,0,,
+DiffusionForensics,ldm,Diffusion chưa dùng trong training theo paper,Not evaluated,0,,
+DiffusionForensics,pndm,Diffusion chưa dùng trong training theo paper,Not evaluated,0,,
+DiffusionForensics,vqdiffusion,Diffusion chưa dùng trong training theo paper,Not evaluated,0,,
+DiffusionForensics,sdv1_new,Diffusion chưa dùng trong training theo paper,Not evaluated,0,,
+DiffusionForensics,sdv2,Diffusion chưa dùng trong training theo paper,Not evaluated,0,,

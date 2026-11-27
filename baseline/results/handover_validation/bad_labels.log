@@ -1,0 +1,13 @@
+
+Traceback (most recent call last):
+  File "D:\XLA\NPR-DeepfakeDetection\evaluate_checkpoint.py", line 210, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "D:\XLA\NPR-DeepfakeDetection\evaluate_checkpoint.py", line 206, in main
+    run_evaluation(frame,checkpoint=args.checkpoint,output=args.output,image_root=args.image_root,
+  File "D:\XLA\NPR-DeepfakeDetection\evaluate_checkpoint.py", line 104, in run_evaluation
+    frame=normalize_manifest(manifest,image_root,verify_files)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\XLA\NPR-DeepfakeDetection\evaluate_checkpoint.py", line 37, in normalize_manifest
+    raise ValueError('true_label must be Real=0 or Fake=1')
+ValueError: true_label must be Real=0 or Fake=1

@@ -14,3 +14,8 @@ venv/
 *.pth
 *.pt
 *.ckpt
+
+# Local data and replay outputs of the baseline
+/baseline/datasets/
+/baseline/results/team_smoke/
+/baseline/results/member2_baseline*/

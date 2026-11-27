@@ -1,0 +1,4 @@
+Dataset,Real,Fake,Total,Excluded_black
+progan,4000,4000,8000,0
+stylegan2,7988,7988,15976,0
+sdv1,5000,9897,14897,103

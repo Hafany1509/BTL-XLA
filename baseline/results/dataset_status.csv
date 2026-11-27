@@ -1,0 +1,4 @@
+﻿suite,source,status,issues,count
+custom,custom,Not evaluated,D:\XLA\NPR-DeepfakeDetection\datasets\test\real: thiếu thư mục hoặc không có ảnh | D:\XLA\NPR-DeepfakeDetection\datasets\test\fake: thiếu thư mục hoặc không có ảnh | không tìm thấy cặp real/fake hoặc 0_real/1_fake,0
+ForenSynths,*,Not evaluated,Dataset chưa sẵn sàng,0
+DiffusionForensics,*,Not evaluated,Dataset chưa sẵn sàng,0

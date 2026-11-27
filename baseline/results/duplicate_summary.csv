@@ -1,0 +1,4 @@
+Dataset,WithinDatasetDuplicateFiles,WithinDatasetDuplicateGroups,WithinDatasetExtraCopies,CrossDatasetDuplicateFiles
+progan,0,0,0,400
+stylegan2,4,2,2,400
+sdv1,105,2,103,0
