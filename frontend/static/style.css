@@ -48,10 +48,11 @@ fieldset { border: 0; margin: 0; padding: 0; }
 .dropzone { display: grid; place-items: center; min-height: 200px; border: 1px solid var(--rule); background: #fff; cursor: pointer; overflow: hidden; }
 .dropzone:hover, .dropzone.drag { border-color: var(--ink); }
 .dropzone img { display: block; max-width: 100%; max-height: 300px; }
+.dropzone img[hidden] { display: none; }
 .drop-hint { text-align: center; color: var(--soft); padding: 20px; }
 .drop-hint small { font-size: 12px; }
 
-.samples { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.samples { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
 .samples button { all: unset; cursor: pointer; display: block; font-size: 12px; line-height: 1.35; color: var(--soft); }
 .samples img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; border: 1px solid var(--rule); margin-bottom: 4px; }
 .samples button:hover img, .samples button:focus-visible img { border-color: var(--ink); }

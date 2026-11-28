@@ -31,28 +31,30 @@ Mở http://localhost:8000.
 | Khóa | Tên hiển thị | Checkpoint |
 |---|---|---|
 | `baseline` | NPR gốc | `upstream/npr/NPR.pth` (trọng số tác giả) |
-| `control` | Fine-tune đối chứng | `outputs/finetune-pilot/npr_control.pth` |
-| `jpeg` | Fine-tune JPEG | `outputs/finetune-pilot/npr_jpeg.pth` |
+| `model_a` | Mô hình A | `outputs/main-experiment/npr_A.pth` (SHA-256 `84b1c6d4…6fec717ec9`) |
+| `model_b` | Mô hình B | `outputs/main-experiment/npr_B_jpeg.pth` (SHA-256 `d7b07f94…f15f6354`) |
 
-Hai checkpoint fine-tune không có trong Git. Nếu đặt ở thư mục khác, khai báo bằng biến môi trường `NPR_FINETUNE_DIR` trước khi chạy. Thiếu checkpoint nào thì mô hình đó hiện "Không khả dụng", các mô hình còn lại vẫn chạy.
+A và B là hai mô hình nhóm huấn luyện từ đầu trong thí nghiệm chính (báo cáo, Mục 5.6), cùng cấu hình, chỉ khác ở bước tăng cường nén JPEG của B. Hai checkpoint không có trong Git. Nếu đặt ở thư mục khác, khai báo bằng biến môi trường `NPR_MODEL_DIR` trước khi chạy. Thiếu checkpoint nào thì mô hình đó hiện "Không khả dụng", các mô hình còn lại vẫn chạy.
 
 ## API
 
 | Phương thức | Đường dẫn | Mô tả |
 |---|---|---|
 | GET | `/api/health` | Trạng thái máy chủ và danh sách mô hình |
-| POST | `/api/predict` | Form multipart: `image` (JPG/PNG, tối đa 10 MB), `models_csv` (ví dụ `baseline,jpeg`), `jpeg_quality` (0, 90, 70 hoặc 50) |
+| POST | `/api/predict` | Form multipart: `image` (JPG/PNG, tối đa 10 MB), `models_csv` (ví dụ `model_a,model_b`), `jpeg_quality` (0, 90, 70 hoặc 50) |
 | GET | `/api/samples` | Danh sách ảnh mẫu |
 
 Lỗi trả về mã 413 (file quá lớn), 415 (không phải JPG/PNG), 422 (file hỏng, tham số sai) hoặc 503 (mô hình chưa nạp được), kèm thông báo tiếng Việt.
 
-## Kịch bản demo đã kiểm tra (27/11/2026)
+## Kịch bản demo đã kiểm tra (28/11/2026)
 
-| Ảnh | NPR gốc | Đối chứng | Fine-tune JPEG |
+fake_score theo thứ tự NPR gốc / Mô hình A / Mô hình B:
+
+| Ảnh | Giữ nguyên | Nén q90 trên máy chủ | Nén q50 trên máy chủ |
 |---|---|---|---|
-| ProGAN thật, PNG gốc | Ảnh thật | Ảnh thật | Ảnh thật |
-| SD v1 giả, PNG gốc | Ảnh AI (1,0000) | Ảnh AI | Ảnh AI |
-| SD v1 giả, nén q90 trên máy chủ | Ảnh thật (0,0235) | Ảnh thật (0,0275) | Ảnh AI (0,6741) |
-| SD v1 giả, nén q50 (file mẫu hoặc nén trên máy chủ) | Ảnh thật | Ảnh thật | Ảnh AI (0,9367) |
+| ProGAN thật (`progan_real_goc.png`) | 0,00 / 0,00 / 0,00 | 0,00 / 0,00 / 0,00 | 0,00 / 0,00 / 0,05 |
+| ProGAN giả (`progan_fake_goc.png`) | 1,00 / 1,00 / 1,00 | 0,00 / 0,00 / **1,00** | 0,00 / 0,00 / **1,00** |
+| StyleGAN2 giả (`stylegan2_fake_goc.png`) | 1,00 / 1,00 / 1,00 | 0,00 / 0,00 / **0,95** | 0,00 / 0,00 / 0,01 |
+| SD v1 giả (`sdv1_fake_goc.png`) | 1,00 / 1,00 / 0,00 | 0,02 / 0,00 / 0,00 | 0,00 / 0,00 / 0,00 |
 
-Điểm 0,9367 trùng với kết quả của thí nghiệm trong `experiments/HANDOVER.md`, xác nhận demo dùng cùng tiền xử lý và cùng cách nén với thí nghiệm.
+Ảnh ProGAN giả ở q90 là kịch bản demo chính: A báo ảnh thật, B vẫn báo ảnh AI. Với ảnh Stable Diffusion, thử trên 6 ảnh SD v1 (ảnh mẫu và `outputs/demo-testset/anh_ai/sdv1_*.png`), B nhận đúng 4/6 khi chưa nén nhưng bỏ sót cả 6 khi nén q90. Tập kiểm thử 8 mô hình sinh của thí nghiệm chính không có mô hình khuếch tán, nên điểm yếu này không hiện trong Bảng 5.1. Không dùng ảnh SD v1 cho demo.

@@ -22,13 +22,13 @@ from inference import CHECKPOINT, load_model  # noqa: E402
 MAX_BYTES = 10 * 1024 * 1024
 ALLOWED_FORMATS = {"JPEG", "PNG"}
 JPEG_QUALITIES = {90, 70, 50}
-FINETUNE_DIR = Path(os.environ.get("NPR_FINETUNE_DIR", ROOT / "outputs" / "finetune-pilot"))
+MODEL_DIR = Path(os.environ.get("NPR_MODEL_DIR", ROOT / "outputs" / "main-experiment"))
 
 # key -> (display name, description, checkpoint path)
 MODEL_SPECS = {
     "baseline": ("NPR gốc", "Trọng số của tác giả bài báo", CHECKPOINT),
-    "control": ("Fine-tune đối chứng", "Fine-tune không tăng cường JPEG", FINETUNE_DIR / "npr_control.pth"),
-    "jpeg": ("Fine-tune JPEG", "Fine-tune có tăng cường nén JPEG", FINETUNE_DIR / "npr_jpeg.pth"),
+    "model_a": ("Mô hình A", "Nhóm tự huấn luyện, không nén ảnh", MODEL_DIR / "npr_A.pth"),
+    "model_b": ("Mô hình B", "Nhóm tự huấn luyện, có tăng cường nén JPEG", MODEL_DIR / "npr_B_jpeg.pth"),
 }
 
 models = {}
@@ -147,8 +147,9 @@ def predict(image: UploadFile = File(...), models_csv: str = Form("baseline"),
 
 SAMPLES = {
     "progan_real_goc.png": "ProGAN, ảnh thật",
+    "progan_fake_goc.png": "ProGAN, ảnh giả",
+    "stylegan2_fake_goc.png": "StyleGAN2, ảnh giả",
     "sdv1_fake_goc.png": "SD v1, ảnh giả",
-    "sdv1_fake_q50.jpg": "SD v1, ảnh giả đã nén q50",
 }
 
 

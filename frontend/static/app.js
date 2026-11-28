@@ -42,7 +42,7 @@ function renderModels() {
     input.type = "checkbox";
     input.value = m.key;
     input.disabled = !m.available;
-    input.checked = m.available && (m.key === "baseline" || m.key === "jpeg");
+    input.checked = m.available && (m.key === "model_a" || m.key === "model_b");
     input.addEventListener("change", updateRunButton);
     const text = document.createElement("span");
     const desc = document.createElement("small");
