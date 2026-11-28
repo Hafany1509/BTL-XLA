@@ -2,6 +2,13 @@
 
 Nhóm tái lập mô hình NPR để phân biệt ảnh thật và ảnh do AI tạo. Sau khi nghiệm thu bản gốc, nhóm đánh giá một bản fine-tune có bổ sung JPEG augmentation.
 
+Bản huấn luyện đầy đủ trên AutoDL, gồm checkpoint NPR + JPEG train từ đầu 50
+epoch, kết quả trên 8 nguồn ForenSynths và hướng dẫn tích hợp web, nằm tại
+[experiments/autodl_jpeg](experiments/autodl_jpeg/README.md). Đây là thí nghiệm
+riêng với bản fine-tune pilot. Web demo hiển thị model này bằng tên
+**NPR + JPEG AutoDL**. Xem trạng thái bàn giao trong README/manifest của gói
+để biết checkpoint thực tế đã được bổ sung hay chưa.
+
 ## Lấy mã nguồn
 
 ```powershell

@@ -33,8 +33,34 @@ Mở http://localhost:8000.
 | `baseline` | NPR gốc | `upstream/npr/NPR.pth` (trọng số tác giả) |
 | `control` | Fine-tune đối chứng | `outputs/finetune-pilot/npr_control.pth` |
 | `jpeg` | Fine-tune JPEG | `outputs/finetune-pilot/npr_jpeg.pth` |
+| `jpeg_autodl` | NPR + JPEG AutoDL | `experiments/autodl_jpeg/models/npr_jpeg_50ep.pth` |
 
 Hai checkpoint fine-tune không có trong Git. Nếu đặt ở thư mục khác, khai báo bằng biến môi trường `NPR_FINETUNE_DIR` trước khi chạy. Thiếu checkpoint nào thì mô hình đó hiện "Không khả dụng", các mô hình còn lại vẫn chạy.
+
+### Model JPEG train đủ 50 epoch trên AutoDL
+
+Xem [bàn giao NPR + JPEG AutoDL](../experiments/autodl_jpeg/README.md). Model này
+được train từ đầu trên 144.024 ảnh thuộc car/cat/chair/horse, không phải checkpoint
+fine-tune hai epoch ở bảng demo cũ. SHA-256 bắt đầu bằng `d7b07f944112`.
+Mã khóa API là `jpeg_autodl`, chẳng hạn `models_csv=jpeg_autodl`.
+Nếu checkpoint B chưa được bổ sung vào nhánh, model sẽ hiện “Không khả dụng”.
+Kiểm tra trạng thái bàn giao trong README/manifest của thư mục `autodl_jpeg`.
+
+Model AutoDL có sẵn kiến trúc trong gói bàn giao, chạy CPU và không cần tải
+submodule/checkpoint tác giả. Các model cũ tiếp tục hiện riêng nếu có đủ file.
+Chạy từ gốc repo bằng môi trường PyTorch/torchvision tương thích:
+
+```powershell
+python -m pip install -r frontend/requirements.txt
+python -m uvicorn frontend.app:app --port 8000
+```
+
+Mở http://localhost:8000 rồi chọn **NPR + JPEG AutoDL**. Chọn **giữ nguyên** để
+không nén thêm ảnh đầu vào. Chọn q90/q70/q50 để minh họa độ bền JPEG. Máy chủ
+chỉ nén một lần trước resize; model không tự nén thêm trong lần gọi đó.
+Các ví dụ/điểm trong bảng demo ngày 27/11 ở dưới thuộc checkpoint pilot cũ,
+không phải kết quả của model AutoDL. Ảnh SD v1 mẫu cũng không thuộc bộ 8 nguồn
+ForenSynths dùng để báo cáo kết quả AutoDL.
 
 ## API
 

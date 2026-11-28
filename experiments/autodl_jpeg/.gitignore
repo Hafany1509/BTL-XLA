@@ -1,0 +1,4 @@
+/checkpoints/
+/code/checkpoints/
+/.venv/
+!models/npr_jpeg_50ep.pth

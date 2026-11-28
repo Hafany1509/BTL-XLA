@@ -59,8 +59,8 @@
 
       <h3>Cách đọc</h3>
       <ol class="explain">
-        <li><code>fake_score</code> là xác suất mô hình cho rằng ảnh do AI tạo, từ 0 đến 1. Lớn hơn 0,5 thì kết luận là ảnh AI. Vạch đứng trên thanh đánh dấu ngưỡng 0,5.</li>
-        <li><i>NPR gốc</i> dùng trọng số tác giả công bố. Hai bản fine-tune do nhóm huấn luyện thêm, khác nhau duy nhất ở bước tăng cường bằng nén JPEG.</li>
+        <li><code>fake_score</code> là điểm mô hình nghiêng về ảnh AI, từ 0 đến 1. Lớn hơn 0,5 thì kết luận là ảnh AI. Điểm này chưa được hiệu chỉnh để diễn giải thành độ tin cậy. Vạch đứng trên thanh đánh dấu ngưỡng 0,5.</li>
+        <li><i>NPR gốc</i> dùng trọng số tác giả công bố. Hai bản fine-tune thuộc thí nghiệm nhỏ trước đó. <i>NPR + JPEG AutoDL</i> là model nhóm train từ đầu 50 epoch, có JPEG augmentation.</li>
         <li>Mã phiên bản là 12 ký tự đầu của SHA-256 checkpoint, dùng để đối chiếu với bảng số liệu trong báo cáo.</li>
         <li>Kết quả chỉ để tham khảo, không phải bằng chứng về nguồn gốc của ảnh.</li>
       </ol>

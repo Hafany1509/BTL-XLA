@@ -1,5 +1,12 @@
 # Thí nghiệm và cải tiến NPR
 
+## Bàn giao AutoDL đầy đủ
+
+Xem [NPR + JPEG AutoDL](autodl_jpeg/README.md) để lấy checkpoint model B train từ
+đầu 50 epoch, code train/test thực tế, cấu hình, log, bảng so sánh A/B trên 62.003
+ảnh và hàm inference cho web. Phần dưới giữ lại thí nghiệm fine-tune pilot 160
+ảnh trước đó; không trộn checkpoint, cấu hình hoặc số liệu giữa hai thí nghiệm.
+
 Thành viên 2 phụ trách dữ liệu và huấn luyện.
 
 1. Trong giai đoạn tái lập, chuẩn bị danh sách ảnh có nhãn, phân chia train/validation/test theo ảnh gốc và hỗ trợ kiểm tra tập test. Chuẩn bị script tạo bản JPEG ở quality 90, 70 và 50.

@@ -17,7 +17,17 @@ from PIL import Image, UnidentifiedImageError
 ROOT = Path(__file__).resolve().parents[1]
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT / "baseline"))
-from inference import CHECKPOINT, load_model  # noqa: E402
+try:
+    from inference import CHECKPOINT, load_model  # noqa: E402
+    LEGACY_IMPORT_ERROR = None
+except ImportError as error:
+    # The AutoDL handover has its own architecture and works without the submodule.
+    CHECKPOINT = ROOT / "upstream" / "npr" / "NPR.pth"
+    load_model = None
+    LEGACY_IMPORT_ERROR = str(error)
+from experiments.autodl_jpeg.inference import (  # noqa: E402
+    CHECKPOINT as JPEG_AUTODL_CHECKPOINT, load_model as load_autodl_jpeg_model,
+)
 
 MAX_BYTES = 10 * 1024 * 1024
 ALLOWED_FORMATS = {"JPEG", "PNG"}
@@ -29,6 +39,7 @@ MODEL_SPECS = {
     "baseline": ("NPR gốc", "Trọng số của tác giả bài báo", CHECKPOINT),
     "control": ("Fine-tune đối chứng", "Fine-tune không tăng cường JPEG", FINETUNE_DIR / "npr_control.pth"),
     "jpeg": ("Fine-tune JPEG", "Fine-tune có tăng cường nén JPEG", FINETUNE_DIR / "npr_jpeg.pth"),
+    "jpeg_autodl": ("NPR + JPEG AutoDL", "Nhóm train từ đầu 50 epoch, 144.024 ảnh", JPEG_AUTODL_CHECKPOINT),
 }
 
 models = {}
@@ -36,12 +47,19 @@ load_errors = {}
 
 
 def load_models():
+    models.clear()
+    load_errors.clear()
     for key, (_, _, path) in MODEL_SPECS.items():
         if not Path(path).is_file():
             load_errors[key] = f"Không tìm thấy checkpoint: {path}"
             continue
         try:
-            models[key] = load_model(Path(path).resolve())
+            if key == "jpeg_autodl":
+                models[key] = load_autodl_jpeg_model(Path(path).resolve())
+            elif load_model is None:
+                load_errors[key] = LEGACY_IMPORT_ERROR
+            else:
+                models[key] = load_model(Path(path).resolve())
         except Exception as error:  # report, keep the other models usable
             load_errors[key] = f"Lỗi nạp checkpoint: {error}"
 
@@ -70,7 +88,7 @@ def model_info(key):
 
 @app.get("/api/health")
 def health():
-    status = "ok" if "baseline" in models else "degraded"
+    status = "ok" if models else "degraded"
     return {"status": status, "models": [model_info(k) for k in MODEL_SPECS]}
 
 

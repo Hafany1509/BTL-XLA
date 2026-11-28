@@ -1,0 +1,9 @@
+* -text
+*.py text eol=lf
+*.sh text eol=lf
+*.md text eol=lf
+*.pth binary
+# Preserve exact source/CSV bytes from the experiment, including legacy spaces.
+code/** whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+*.csv whitespace=cr-at-eol
+*.log whitespace=cr-at-eol
