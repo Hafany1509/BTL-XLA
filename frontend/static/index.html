@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>NPR · Phát hiện ảnh sinh bởi mô hình</title>
-  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/style.css?v=2">
 </head>
 <body>
   <header class="masthead">
@@ -60,13 +60,13 @@
       <h3>Cách đọc</h3>
       <ol class="explain">
         <li><code>fake_score</code> là xác suất mô hình cho rằng ảnh do AI tạo, từ 0 đến 1. Lớn hơn 0,5 thì kết luận là ảnh AI. Vạch đứng trên thanh đánh dấu ngưỡng 0,5.</li>
-        <li><i>NPR gốc</i> dùng trọng số tác giả công bố. Hai bản fine-tune do nhóm huấn luyện thêm, khác nhau duy nhất ở bước tăng cường bằng nén JPEG.</li>
+        <li><i>NPR gốc</i> dùng trọng số tác giả công bố. <i>Mô hình A</i> và <i>Mô hình B</i> do nhóm tự huấn luyện từ đầu với cùng cấu hình, chỉ khác ở bước tăng cường bằng nén JPEG của B.</li>
         <li>Mã phiên bản là 12 ký tự đầu của SHA-256 checkpoint, dùng để đối chiếu với bảng số liệu trong báo cáo.</li>
         <li>Kết quả chỉ để tham khảo, không phải bằng chứng về nguồn gốc của ảnh.</li>
       </ol>
     </section>
   </main>
 
-  <script src="/static/app.js"></script>
+  <script src="/static/app.js?v=2"></script>
 </body>
 </html>
