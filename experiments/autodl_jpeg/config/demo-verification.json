@@ -1,0 +1,19 @@
+{
+  "fixture_only": false,
+  "checkpoint_sha256": "d7b07f94411280632e0d2217810cc01ccf0c67650ee44ab98009f92df15f6354",
+  "tests": [
+    "AutoDL preprocess/JPEG pixel equality",
+    "logit and score parity",
+    "hash mismatch rejected",
+    "FastAPI health, upload and model registration",
+    "4 JPEG conditions without double recompression",
+    "invalid image/model/quality errors",
+    "static HTML/JS routes"
+  ],
+  "torch": "2.5.1+cpu",
+  "tested_images": [
+    "progan_real_goc.png",
+    "sdv1_fake_goc.png"
+  ],
+  "note": "These are integration checks, not a repeat of the 62003-image benchmark."
+}

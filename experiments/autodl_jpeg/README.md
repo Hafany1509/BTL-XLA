@@ -1,6 +1,6 @@
 # NPR + JPEG AutoDL: bàn giao model B
 
-> **Đang chờ checkpoint B từ AutoDL.** Các CSV và báo cáo đã có trong nhánh này. File model, cấu hình/log tải trực tiếp từ AutoDL và kiểm thử bằng model B thực tế chưa được bổ sung. Code đang là bản chuẩn bị từ kit đã dùng, chưa đối chiếu lại với snapshot AutoDL. Web sẽ hiện model B “Không khả dụng” cho tới khi có `models/npr_jpeg_50ep.pth` đúng SHA-256. Xem `publication_ready` trong manifest.
+> **Đã có checkpoint B đúng SHA-256 để dùng inference/web demo.** Code là bản kit đã triển khai, chưa nhận lại snapshot code đầy đủ từ AutoDL. Cấu hình ghi từ log trong phiên làm việc; log bàn giao hiện là trích đoạn hoàn thành epoch 50, chưa phải toàn bộ train.log.
 
 Gói này phục vụ web demo và báo cáo của thí nghiệm train NPR từ đầu đủ 50 epoch,
 có JPEG augmentation. Nó khác bản fine-tune pilot hai epoch ở thư mục experiments
@@ -12,10 +12,10 @@ cũ. Kiến trúc vẫn là NPR, không thêm CBAM hoặc DIRE.
 |---|---|---|
 | Model B epoch 50 | `models/npr_jpeg_50ep.pth` | Nạp trong web hoặc inference CPU |
 | Inference | `inference.py` | `load_model()`, `predict()`, CLI, kiểm tra SHA-256 |
-| Code thực tế | `code/` | Kiến trúc, data pipeline, train, resume, evaluator AutoDL |
-| Kết quả | `results/` | 8 CSV A/B, comparison.csv và metadata của các lần test |
-| Cấu hình | `config/train-options.txt`, `config/environment.txt` | Đối chiếu cấu hình/môi trường thực tế |
-| Log | `logs/train.log` | Lịch sử huấn luyện và hoàn thành epoch 50 |
+| Code kit đã triển khai | `code/` | Kiến trúc, data pipeline, train, resume, evaluator |
+| Kết quả | `results/` | 8 CSV A/B và comparison.csv |
+| Cấu hình | `config/experiment.json` | Cấu hình ghi nhận từ log của phiên train |
+| Log | `logs/training-completion-excerpt.log` | Trích đoạn log người dùng gửi, xác nhận hoàn thành epoch 50 |
 | Báo cáo | `REPORT.md` | Phương pháp, bảng kết quả, cách diễn giải và giới hạn |
 | Nguồn gốc | `handover-manifest.json` | Hash checkpoint/source/artifact; trạng thái xác minh |
 
@@ -108,7 +108,7 @@ cd /root/autodl-tmp/NPR-JPEG
 .venv/bin/python -u code/test.py --dataroot /root/autodl-tmp/CNNDetection/extracted/test --model_path checkpoints/B-jpeg/model_epoch_last.pth --batch_size 32 --num_threads 8 --test_jpeg_quality 0 --results_csv results/B_original.csv
 ```
 
-Các script env.sh/run.sh/setup.sh giữ nguyên bản dùng trên AutoDL. Đọc và sửa
+Các script env.sh/run.sh/setup.sh lấy từ kit đã triển khai; runner dùng checkpoint cuối. Không có bước chọn best trong bản bàn giao này. Đọc và sửa
 đường dẫn trong env.sh khi chuyển máy. Lệnh test-A/test-B của run.sh chạy cả
 original/q90/q70/q50. Checkpoint chính là epoch 50 cuối, không chọn bằng test.
 Full optimizer/RNG resume state và dataset không nằm trong gói bàn giao này.

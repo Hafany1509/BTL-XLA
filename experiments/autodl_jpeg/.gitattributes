@@ -6,4 +6,5 @@
 # Preserve exact source/CSV bytes from the experiment, including legacy spaces.
 code/** whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
 *.csv whitespace=cr-at-eol
+*.json whitespace=cr-at-eol
 *.log whitespace=cr-at-eol

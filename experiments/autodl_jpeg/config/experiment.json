@@ -1,0 +1,56 @@
+{
+  "provenance": "Recorded from training/check logs in the user session; not an exported opt.txt",
+  "model": "NPR + JPEG",
+  "initialization": "from scratch",
+  "seed": 100,
+  "classes": [
+    "car",
+    "cat",
+    "chair",
+    "horse"
+  ],
+  "train_images": 144024,
+  "val_images": 1600,
+  "epochs": 50,
+  "batch_size": 32,
+  "num_workers": 8,
+  "optimizer": "Adam",
+  "lr": 0.0002,
+  "beta1": 0.9,
+  "delr_freq": 10,
+  "lr_multiplier": 0.9,
+  "jpg_prob": 0.5,
+  "jpg_qual": [
+    50,
+    95
+  ],
+  "jpg_method": [
+    "cv2",
+    "pil"
+  ],
+  "blur_prob": 0,
+  "train_resize": [
+    256,
+    256
+  ],
+  "train_crop": [
+    224,
+    224
+  ],
+  "horizontal_flip": true,
+  "test_resize": [
+    256,
+    256
+  ],
+  "test_crop": false,
+  "threshold": 0.5,
+  "checkpoint_policy": "final epoch50",
+  "source_snapshot_reexported": false,
+  "reported_runtime": {
+    "python": "3.10",
+    "torch": "2.1.2+cu118",
+    "torchvision": "0.16.2+cu118",
+    "numpy": "1.26.4",
+    "pillow": "10.3.0"
+  }
+}
